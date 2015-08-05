@@ -13,9 +13,16 @@ source oe-init-build-env
 bitbake -k core-image-xbt
 ```
 
-Boot:
+Boot image:
 
 ```
 xinit
 runqemu qemuarm
+```
+
+OR build libs:
+```
+bitbake python-pillow
+bitbake python-cryptography
+bitbake zbar
 ```
