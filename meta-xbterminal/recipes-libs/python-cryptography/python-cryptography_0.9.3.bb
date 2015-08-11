@@ -19,3 +19,8 @@ DEPENDS = "\
     python-pyasn1 \
     python-ipaddress \
     python-idna"
+
+RDEPENDS_${PN} = "\
+    python-six \
+    python-misc \
+    python-enum34"
