@@ -10,3 +10,5 @@ SRC_URI[sha256sum] = "7959b4a74abdc27b312fed1c21e6caf9309ce0b29ea86b591fd2e99ecd
 inherit setuptools
 
 S = "${WORKDIR}/pycparser-${PV}"
+
+BBCLASSEXTEND = "native"

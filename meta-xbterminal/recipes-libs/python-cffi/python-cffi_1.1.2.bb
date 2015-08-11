@@ -12,3 +12,5 @@ inherit setuptools
 S = "${WORKDIR}/cffi-${PV}"
 
 DEPENDS = "libffi python-pycparser"
+
+BBCLASSEXTEND = "native"

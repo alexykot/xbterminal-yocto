@@ -9,7 +9,7 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     xinit xset git nano htop usbutils \
-    gcc glibc libc6-dev python-dev \
-    python-pyqt python-dbus \
-    python-pip python-pyusb python-pybluez python-cffi python-virtualenv \
+    python-pyqt python-dbus python-imaging \
+    python-pip python-pyusb python-pybluez python-cryptography \
+    python-qrcode python-wifi python-requests \
     "
