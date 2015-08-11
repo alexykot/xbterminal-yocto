@@ -6,12 +6,12 @@ apt-get update
 apt-get install --yes xinit
 sed -i 's/allowed_users=console/allowed_users=anybody/g' /etc/X11/Xwrapper.config
 
-# SD cards
-apt-get install --yes dosfstools
+# Utils
+apt-get install --yes dosfstools htop mc
 
 # Install required packages
 # http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
-apt-get install --yes gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm mc
+apt-get install --yes gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
 # Prepare build environment
 su - vagrant <<"EOF"
