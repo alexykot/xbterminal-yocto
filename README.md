@@ -1,6 +1,8 @@
 Create VM:
 
 ```
+git clone git@bitbucket.org:xbterminal/xbterminal-yocto.git
+cd xbterminal-yocto
 vagrant up
 ```
 
@@ -16,8 +18,7 @@ bitbake -k core-image-xbt
 Boot image:
 
 ```
-xinit
-runqemu qemuarm
+runqemu qemuarm nographic
 ```
 
 OR build libs:
