@@ -1,0 +1,11 @@
+--- a/python/zbarmodule.h
++++ b/python/zbarmodule.h
+@@ -21,7 +21,7 @@
+  *  http://sourceforge.net/projects/zbar
+  *------------------------------------------------------------------------*/
+ 
+-#include <Python.h>
++#include <python2.7/Python.h>
+ #include <stddef.h>
+ #include <zbar.h>
+ 

@@ -12,4 +12,5 @@ IMAGE_INSTALL += "\
     python-pyqt python-dbus python-imaging \
     python-pip python-pyusb python-pybluez python-cryptography \
     python-qrcode python-wifi python-requests \
+    zbar \
     "
