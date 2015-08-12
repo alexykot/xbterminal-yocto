@@ -9,7 +9,7 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
-    git nano htop usbutils \
+    git nano htop usbutils ntp \
     zbar fswebcam \
     python-pyqt python-dbus python-imaging \
     python-pip python-pyusb python-pybluez python-cryptography \
