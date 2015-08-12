@@ -9,9 +9,9 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     xinit xset git nano htop usbutils \
+    zbar fswebcam \
     python-pyqt python-dbus python-imaging \
     python-pip python-pyusb python-pybluez python-cryptography \
     python-qrcode python-wifi python-requests \
-    zbar \
     python-psutil python-ntplib python-protobuf python-adafruit-bbio \
     "
