@@ -13,5 +13,5 @@ IMAGE_INSTALL += "\
     python-pip python-pyusb python-pybluez python-cryptography \
     python-qrcode python-wifi python-requests \
     zbar \
-    python-psutil python-ntplib python-protobuf \
+    python-psutil python-ntplib python-protobuf python-adafruit-bbio \
     "
