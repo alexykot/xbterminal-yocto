@@ -8,7 +8,8 @@ LICENSE = "MIT"
 inherit core-image
 
 IMAGE_INSTALL += "\
-    xinit xset git nano htop usbutils \
+    packagegroup-core-x11-xserver xinit xset \
+    git nano htop usbutils \
     zbar fswebcam \
     python-pyqt python-dbus python-imaging \
     python-pip python-pyusb python-pybluez python-cryptography \
