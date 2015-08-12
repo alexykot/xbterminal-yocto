@@ -1,7 +1,7 @@
 SUMMARY = "A console-only image that fully supports the target device \
 hardware."
 
-IMAGE_FEATURES += "splash package-management"
+IMAGE_FEATURES += "splash package-management ssh-server-openssh"
 
 LICENSE = "MIT"
 
@@ -17,3 +17,7 @@ IMAGE_INSTALL += "\
     python-psutil python-ntplib python-protobuf python-adafruit-bbio \
     python-nfcpy \
     "
+
+# Set root password
+inherit extrausers
+EXTRA_USERS_PARAMS = "usermod -P root root;"
