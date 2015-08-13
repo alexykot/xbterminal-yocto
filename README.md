@@ -6,24 +6,21 @@ cd xbterminal-yocto
 vagrant up
 ```
 
-Build an image:
+Build an `core-image-xbt` image:
 
 ```
 vagrant ssh
 cd poky
 source oe-init-build-env
-bitbake -k core-image-xbt
+bitbake core-image-xbt
 ```
 
 Boot image:
 
 ```
-runqemu qemuarm nographic
+xinit
+runqemu qemuarm
 ```
 
-OR build libs:
-```
-bitbake python-pillow
-bitbake python-cryptography
-bitbake zbar
-```
+User: root
+Password: root
