@@ -21,3 +21,11 @@ IMAGE_INSTALL += "\
 # Set root password
 inherit extrausers
 EXTRA_USERS_PARAMS = "usermod -P root root;"
+
+# DNS
+set_dns_servers () {
+    DNS_SERVERS=$(cat /etc/resolv.conf | sed 's/^nameserver //' | tr '\n' ' ')
+    echo "dns-nameservers ${DNS_SERVERS}" >> ${IMAGE_ROOTFS}/etc/network/interfaces
+}
+IMAGE_INSTALL_append_qemuarm = " resolvconf"
+ROOTFS_POSTPROCESS_COMMAND_append_qemuarm = " set_dns_servers; "
