@@ -1,7 +1,9 @@
 DESCRIPTION = "IPv4/IPv6 manipulation library"
 HOMEPAGE = "https://github.com/phihag/ipaddress"
-LICENSE = "PSFL"
+LICENSE = "Python-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7f538584cc3407bf76042def7168548a"
+
+PR = "r1"
 
 SRC_URI = "https://pypi.python.org/packages/source/i/ipaddress/ipaddress-${PV}.tar.gz;name=src \
            https://raw.githubusercontent.com/phihag/ipaddress/e98c02a4987a6cba3c0bc225c2115cf631ea9b33/LICENSE;name=lic \
@@ -16,5 +18,5 @@ inherit setuptools
 S = "${WORKDIR}/ipaddress-${PV}"
 
 do_configure_append() {
-    mv ${WORKDIR}/LICENSE ${S}/
+    cp ${WORKDIR}/LICENSE ${S}/
 }

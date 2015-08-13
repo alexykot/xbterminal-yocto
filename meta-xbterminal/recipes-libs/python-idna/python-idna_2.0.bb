@@ -1,7 +1,9 @@
 DESCRIPTION = "Internationalized Domain Names in Applications (IDNA)"
 HOMEPAGE = "https://github.com/kjd/idna"
-LICENSE = "BSD-like"
+LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE.rst;md5=c61e6ec7ab3da6b340d8d3a89c964ef2"
+
+PR = "r1"
 
 SRC_URI = "https://pypi.python.org/packages/source/i/idna/idna-${PV}.tar.gz"
 SRC_URI[md5sum] = "bd17a9d15e755375f48a62c13b25b801"
