@@ -10,12 +10,7 @@ inherit core-image
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
     git nano htop usbutils ntp \
-    zbar fswebcam \
-    python-pyqt python-dbus python-imaging \
-    python-pip python-pyusb python-pybluez python-cryptography \
-    python-qrcode python-wifi python-requests \
-    python-psutil python-ntplib python-protobuf python-adafruit-bbio \
-    python-nfcpy \
+    xbterminal-firmware \
     "
 
 # Set root password
