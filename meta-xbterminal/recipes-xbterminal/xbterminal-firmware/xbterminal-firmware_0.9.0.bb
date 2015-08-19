@@ -3,10 +3,10 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-SRC_URI = "file://xbterminal-firmware-${PV}-armhf.tar.gz"
+SRC_URI_wandboard-solo = "file://xbterminal-firmware-${PV}-armhf.tar.gz"
 SRC_URI_qemuarm = "file://xbterminal-firmware-${PV}-armel.tar.gz"
 
-S = "${WORKDIR}/xbterminal-firmware-${PV}-armhf"
+S_wandboard-solo = "${WORKDIR}/xbterminal-firmware-${PV}-armhf"
 S_qemuarm = "${WORKDIR}/xbterminal-firmware-${PV}-armel"
 
 RDEPENDS_${PN} = "\

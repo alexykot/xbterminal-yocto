@@ -9,7 +9,7 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
-    git nano htop usbutils ntp \
+    util-linux git nano htop usbutils ntp \
     xbterminal-firmware \
     "
 
