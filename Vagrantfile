@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
         'createhd',
         '--filename', second_disk,
         '--format', 'VDI', 
-        '--size', 60 * 1024  # 60 GB
+        '--size', 90 * 1024  # 90 GB
       ]
     end
     vb.customize [
