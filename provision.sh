@@ -13,6 +13,9 @@ apt-get install --yes dosfstools htop mc
 # http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
 apt-get install --yes gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
+# Copy SSH config
+su - vagrant -c "cp /vagrant/ssh_config .ssh/config"
+
 # Prepare build environment
 su - vagrant <<"EOF"
 git clone -b fido git://git.yoctoproject.org/poky
