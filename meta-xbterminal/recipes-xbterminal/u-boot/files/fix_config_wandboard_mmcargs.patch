@@ -1,0 +1,13 @@
+diff --git a/include/configs/wandboard.h b/include/configs/wandboard.h
+index 0088e5c..bf28d93 100644
+--- a/include/configs/wandboard.h
++++ b/include/configs/wandboard.h
+@@ -159,7 +159,7 @@
+ 			"fi; "	\
+ 		"fi\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+-		"root=${mmcroot}; run videoargs\0" \
++		"root=${mmcroot} video=mxcfb0:dev=lcd,480x272M@60,if=RGB24\0" \
+ 	"videoargs=" \
+ 		"setenv nextcon 0; " \
+ 		"if hdmidet; then " \
