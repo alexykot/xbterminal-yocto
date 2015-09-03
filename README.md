@@ -9,9 +9,19 @@ cd poky
 source oe-init-build-env
 ```
 
+## XBTerminal firmware
+
+Put necessary files into directory `meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files`:
+
+* source package
+* device_key
+* secret_key
+* local_state
+
 ## Build image
 
-Edit `conf/local.conf` and choose a build target (**qemuarm** or **wandboard-solo**).  
+Edit `conf/local.conf` and choose a build target (**qemuarm** or **wandboard-solo**).
+
 Then build an image:
 
 ```
