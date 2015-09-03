@@ -8,6 +8,7 @@ Vagrant.configure(2) do |config|
     vb.name = "XBTerminal Build"
     vb.gui = true
     vb.memory = 2048
+    vb.cpus = 2
 
     # Enable USB 2.0
     vb.customize ['modifyvm', :id, '--usb', 'on']
