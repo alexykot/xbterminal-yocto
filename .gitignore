@@ -1,4 +1,2 @@
 .vagrant
-meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files/device_key
-meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files/secret_key
-meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files/local_state
+meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files/
