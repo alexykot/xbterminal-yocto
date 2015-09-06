@@ -11,12 +11,7 @@ source oe-init-build-env
 
 ## XBTerminal firmware
 
-Put necessary files into directory `meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files`:
-
-* source package
-* device_key
-* secret_key
-* local_state
+Put the installation package into directory `meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files`.
 
 ## Build image
 
