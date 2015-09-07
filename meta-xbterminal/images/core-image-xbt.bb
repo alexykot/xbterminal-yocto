@@ -1,7 +1,7 @@
 SUMMARY = "A console-only image that fully supports the target device \
 hardware."
 
-IMAGE_FEATURES += "splash package-management ssh-server-openssh"
+IMAGE_FEATURES += "splash package-management"
 
 LICENSE = "MIT"
 
@@ -9,7 +9,7 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
-    util-linux git nano htop usbutils ntp openssh-sftp-server \
+    util-linux git nano htop usbutils ntp \
     xbterminal-firmware \
     "
 
