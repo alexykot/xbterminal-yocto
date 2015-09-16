@@ -1,7 +1,6 @@
 HOMEPAGE = "http://saltstack.com/"
 SECTION = "admin"
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=5357642471cfab4740d1d0a20c51af6a"
 DEPENDS = "\
            python-msgpack \
            python-pyyaml \
@@ -12,23 +11,6 @@ DEPENDS = "\
            python-m2crypto \
 "
 
-SRCNAME = "salt"
-SRC_URI = "http://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz \
-           file://set_python_location_hashbang.patch \
-           file://minion \
-           file://salt-minion \
-           file://salt-common.bash_completion \
-           file://salt-common.logrotate \
-           file://salt-api \
-           file://salt-master \
-           file://master \
-           file://salt-syndic \
-           file://cloud \
-           file://roster \
-"
-
-SRC_URI[md5sum] = "5091f15202c852a3e92692035b05c872"
-SRC_URI[sha256sum] = "e0d5b3ec220d8c956120bf2faa00bb7013e500eef7a697bc428cb179a136a5d2"
 
 S = "${WORKDIR}/${SRCNAME}-${PV}"
 
