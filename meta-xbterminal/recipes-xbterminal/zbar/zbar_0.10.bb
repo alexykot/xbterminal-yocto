@@ -14,6 +14,6 @@ SRC_URI[sha256sum] = "234efb39dbbe5cef4189cc76f37afbe3cfcfb45ae52493bfe8e191318b
 
 inherit autotools pkgconfig python-dir distutils-base gettext
 
-DEPENDS = "v4l-utils jpeg libxv libice libsm"
+DEPENDS += "v4l-utils jpeg libxv libice libsm"
 
 EXTRA_OECONF = " --without-imagemagick --without-qt --without-gtk"

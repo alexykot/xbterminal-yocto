@@ -13,7 +13,7 @@ inherit setuptools
 
 S = "${WORKDIR}/cryptography-${PV}"
 
-DEPENDS = "\
+DEPENDS += "\
     python-cffi-native \
     python-cffi \
     python-enum34 \

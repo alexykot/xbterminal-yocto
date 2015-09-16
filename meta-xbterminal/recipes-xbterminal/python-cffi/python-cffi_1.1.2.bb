@@ -13,7 +13,7 @@ inherit setuptools
 
 S = "${WORKDIR}/cffi-${PV}"
 
-DEPENDS = "libffi python-pycparser"
+DEPENDS += "libffi python-pycparser"
 
 RDEPENDS_${PN} = "python-pycparser"
 

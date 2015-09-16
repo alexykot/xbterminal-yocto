@@ -11,4 +11,4 @@ inherit setuptools
 
 S = "${WORKDIR}/PyBluez-${PV}"
 
-DEPENDS = "bluez4"
+DEPENDS += "bluez4"

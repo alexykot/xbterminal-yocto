@@ -9,5 +9,5 @@ SRC_URI[sha256sum] = "3ee389f72a7737700d22e0c954720b1e3bbadc8a0daad6426c25489ba9
 
 inherit autotools-brokensep
 
-DEPENDS = "gd"
+DEPENDS += "gd"
 RDEPENDS_${PN} = "gd"
