@@ -11,4 +11,4 @@ S = "${WORKDIR}/pyusb-${PV}"
 
 inherit setuptools
 
-DEPENDS = "libusb1"
+DEPENDS += "libusb1"
