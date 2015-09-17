@@ -23,7 +23,7 @@ git clone -b fido git://git.openembedded.org/meta-openembedded
 git clone -b fido https://github.com/Freescale/meta-fsl-arm
 git clone -b fido https://github.com/Freescale/meta-fsl-arm-extra
 ln -s   /vagrant xbterminal-yocto
-source oe-init-build-env
+source poky/oe-init-build-env
 cp /vagrant/conf/bblayers.conf conf/
 cp /vagrant/conf/local.conf conf/
 EOF
