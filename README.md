@@ -5,8 +5,7 @@ git clone git@bitbucket.org:xbterminal/xbterminal-yocto.git
 cd xbterminal-yocto
 vagrant up
 vagrant ssh
-cd poky
-source oe-init-build-env
+source poky/oe-init-build-env
 ```
 
 ## XBTerminal firmware
