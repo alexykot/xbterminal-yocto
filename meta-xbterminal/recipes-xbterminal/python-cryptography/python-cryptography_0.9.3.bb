@@ -3,7 +3,7 @@ HOMEPAGE = "https://cryptography.io/"
 LICENSE = "Apache-2.0 & BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8c3617db4fb6fae01f1d253ab91511e4"
 
-PR = "r3"
+PR = "r4"
 
 SRC_URI = "https://pypi.python.org/packages/source/c/cryptography/cryptography-${PV}.tar.gz"
 SRC_URI[md5sum] = "70af3fbce7683b31d173eba225f18650"
@@ -28,4 +28,5 @@ RDEPENDS_${PN} = "\
     python-misc \
     python-enum34 \
     python-ipaddress \
-    python-idna"
+    python-idna \
+    python-setuptools"
