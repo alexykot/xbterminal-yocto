@@ -10,10 +10,10 @@ S_wandboard-solo = "${WORKDIR}/xbterminal-firmware_${PV}_armhf"
 S_qemuarm = "${WORKDIR}/xbterminal-firmware_${PV}_armel"
 
 RDEPENDS_${PN} = "\
+    python-modules \
     python-pyqt \
     python-dbus \
     python-imaging \
-    python-pip \
     python-pyusb \
     python-pybluez \
     python-cryptography \

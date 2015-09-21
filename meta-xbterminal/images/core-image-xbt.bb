@@ -5,7 +5,7 @@ IMAGE_FEATURES += "splash package-management"
 
 LICENSE = "MIT"
 
-inherit core-image
+require recipes-core/images/core-image-minimal.bb
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
@@ -25,3 +25,10 @@ set_dns_servers () {
 }
 IMAGE_INSTALL_append_qemuarm = " resolvconf"
 ROOTFS_POSTPROCESS_COMMAND_append_qemuarm = " set_dns_servers; "
+
+QT_WEBKIT ?= "-no-webkit"
+QT_PHONON ?= "-no-phonon"
+QT_DBUS ?= "-no-qdbus"
+
+DISTRO_FEATURES_remove = "pulseaudio"
+
