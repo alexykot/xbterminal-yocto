@@ -10,7 +10,7 @@ require recipes-core/images/core-image-minimal.bb
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
     util-linux git nano htop usbutils ntp \
-    connman connman-conf\ 
+    connman connman-conf connman-client\ 
     xbterminal-firmware \
     "
 
