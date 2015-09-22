@@ -30,5 +30,3 @@ ROOTFS_POSTPROCESS_COMMAND_append_qemuarm = " set_dns_servers; "
 QT_WEBKIT ?= "-no-webkit"
 QT_PHONON ?= "-no-phonon"
 QT_DBUS ?= "-no-qdbus"
-
-DISTRO_FEATURES_remove = "pulseaudio"
