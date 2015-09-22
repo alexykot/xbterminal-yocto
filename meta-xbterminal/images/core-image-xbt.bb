@@ -10,7 +10,7 @@ require recipes-core/images/core-image-minimal.bb
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
     util-linux git nano htop usbutils ntp \
-    connman connman-conf connman-client\ 
+    connman connman-conf connman-client \
     xbterminal-firmware \
     "
 
@@ -31,4 +31,3 @@ QT_PHONON ?= "-no-phonon"
 QT_DBUS ?= "-no-qdbus"
 
 DISTRO_FEATURES_remove = "pulseaudio"
-
