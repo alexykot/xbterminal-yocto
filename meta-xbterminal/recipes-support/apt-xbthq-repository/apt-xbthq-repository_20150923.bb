@@ -15,7 +15,7 @@ SRC_URI = " file://00ssl-xbt-client-auth \
             file://xbt.key \
             file://xbt.crt \
             file://xbt_dev_signing.key \
-            file://trusted.gpg
+            file://trusted.gpg \
           "
 
 inherit allarch
