@@ -5,11 +5,10 @@ IMAGE_FEATURES += "splash package-management"
 
 LICENSE = "MIT"
 
-require recipes-core/images/core-image-minimal.bb
+inherit core-image
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
-    packagegroup-base-bluetooth \
     util-linux git nano htop usbutils ntp \
     connman connman-conf connman-client \
     xbterminal-firmware \
