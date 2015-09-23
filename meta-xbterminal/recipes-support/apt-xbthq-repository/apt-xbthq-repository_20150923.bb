@@ -25,7 +25,7 @@ do_install () {
 	install -m 0644 ${WORKDIR}/00ssl-xbt-client-auth ${D}${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth
 
         install -d ${D}/${sysconfdir}/apt/sources.list.d/
-        install -m 0644 ${WORKDIR}/xbt-dev.list ${D}${sysconfdir}/apt/apt.conf.d/xbt-dev.list
+        install -m 0644 ${WORKDIR}/xbt-dev.list ${D}${sysconfdir}/apt/sources.list.d/xbt-dev.list
 
 	install -m 0644 ${WORKDIR}/xbt.key ${D}${sysconfdir}/apt/xbt.key
 	install -m 0644 ${WORKDIR}/xbt.crt ${D}${sysconfdir}/apt/xbt.crt
