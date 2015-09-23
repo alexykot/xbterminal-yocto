@@ -43,7 +43,7 @@ FILES_${PN} += "\
 
 pkg_postinst_${PN} () {
     SYSROOT="$D" apt-key finger
-    SYSROOT="$D" apt-key add $D${sysconfdir}/apt/xbt_dev_signing.key
+    SYSROOT="$D" apt-key add $D${sysconfdir}/apt/xbt_dev_signing.key --keyring $D${sysconfdir}/apt/trusted.gpg
 
 }
 
