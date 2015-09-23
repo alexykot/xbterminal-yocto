@@ -15,6 +15,7 @@ SRC_URI = " file://00ssl-xbt-client-auth \
             file://xbt.key \
             file://xbt.crt \
             file://xbt_dev_signing.key \
+            file://trusted.gpg
           "
 
 inherit allarch
@@ -32,13 +33,16 @@ do_install () {
 	install -m 0644 ${WORKDIR}/xbt.crt ${D}${sysconfdir}/apt/xbt.crt
         
         install -m 0644 ${WORKDIR}/xbt_dev_signing.key ${D}${sysconfdir}/apt/xbt_dev_signing.key
+	install -m 0644 ${WORKDIR}/trusted.gpg ${D}${sysconfdir}/apt/trusted.gpg
 } 
 
 FILES_${PN} += "\
 		${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth \
 		${sysconfdir}/apt/sources.list.d/xbt-dev.list \
+		${sysconfdir}/apt/xbt_dev_signing.key \
                 ${sysconfdir}/apt/xbt.key \
                 ${sysconfdir}/apt/xbt.crt \
+		${sysconfdir}/apt/trusted.gpg \
 		"
 
 pkg_postinst_${PN} () {
