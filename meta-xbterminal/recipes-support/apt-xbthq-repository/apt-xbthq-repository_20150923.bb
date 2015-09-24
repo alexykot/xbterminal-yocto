@@ -47,6 +47,15 @@ FILES_${PN} += "\
     ${sysconfdir}/apt/trusted.gpg \
     "
 
+
+CONFFILES_${PN} += "\
+    ${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth \
+    ${sysconfdir}/apt/sources.list.d/xbt-dev_${MACHINE}.list \
+    ${sysconfdir}/apt/xbt.key \
+    ${sysconfdir}/apt/xbt.crt \
+    ${sysconfdir}/apt/trusted.gpg \
+    "
+
 pkg_postinst_${PN} () {
 #!/bin/sh
 if [ -n "$D" ]; then
