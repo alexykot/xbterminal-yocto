@@ -25,27 +25,27 @@ inherit allarch
 S = "${WORKDIR}"
 
 do_install () {
-	install -d ${D}/${sysconfdir}/apt/apt.conf.d/
-	install -m 0644 ${WORKDIR}/00ssl-xbt-client-auth ${D}${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth
+    install -d ${D}/${sysconfdir}/apt/apt.conf.d/
+    install -m 0644 ${WORKDIR}/00ssl-xbt-client-auth ${D}${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth
 
-  install -d ${D}/${sysconfdir}/apt/sources.list.d/
-  install -m 0644 ${WORKDIR}/xbt-dev_${MACHINE}.list ${D}${sysconfdir}/apt/sources.list.d/xbt-dev_${MACHINE}.list
+    install -d ${D}/${sysconfdir}/apt/sources.list.d/
+    install -m 0644 ${WORKDIR}/xbt-dev_${MACHINE}.list ${D}${sysconfdir}/apt/sources.list.d/xbt-dev_${MACHINE}.list
 
-	install -m 0644 ${WORKDIR}/xbt.key ${D}${sysconfdir}/apt/xbt.key
-	install -m 0644 ${WORKDIR}/xbt.crt ${D}${sysconfdir}/apt/xbt.crt
+    install -m 0644 ${WORKDIR}/xbt.key ${D}${sysconfdir}/apt/xbt.key
+    install -m 0644 ${WORKDIR}/xbt.crt ${D}${sysconfdir}/apt/xbt.crt
 
-  install -m 0644 ${WORKDIR}/xbt_dev_signing.key ${D}${sysconfdir}/apt/xbt_dev_signing.key
-	install -m 0644 ${WORKDIR}/trusted.gpg ${D}${sysconfdir}/apt/trusted.gpg
+    install -m 0644 ${WORKDIR}/xbt_dev_signing.key ${D}${sysconfdir}/apt/xbt_dev_signing.key
+    install -m 0644 ${WORKDIR}/trusted.gpg ${D}${sysconfdir}/apt/trusted.gpg
 }
 
 FILES_${PN} += "\
-		${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth \
-		${sysconfdir}/apt/sources.list.d/xbt-dev_${MACHINE}.list \
-		${sysconfdir}/apt/xbt_dev_signing.key \
-                ${sysconfdir}/apt/xbt.key \
-                ${sysconfdir}/apt/xbt.crt \
-		${sysconfdir}/apt/trusted.gpg \
-		"
+    ${sysconfdir}/apt/apt.conf.d/00ssl-xbt-client-auth \
+    ${sysconfdir}/apt/sources.list.d/xbt-dev_${MACHINE}.list \
+    ${sysconfdir}/apt/xbt_dev_signing.key \
+    ${sysconfdir}/apt/xbt.key \
+    ${sysconfdir}/apt/xbt.crt \
+    ${sysconfdir}/apt/trusted.gpg \
+    "
 
 pkg_postinst_${PN} () {
 #!/bin/sh
