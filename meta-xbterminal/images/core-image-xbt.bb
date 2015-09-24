@@ -11,6 +11,7 @@ IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
     util-linux git nano htop usbutils ntp \
     connman connman-conf connman-client \
+    gnupg xbthq-certificates apt-xbthq-repository \
     xbterminal-firmware \
     "
 
