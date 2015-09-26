@@ -27,6 +27,8 @@ PACKAGES += "\
            ${PN}-bash-completion \
 "
 
+SYSTEMD_PACKAGES = "${PN}-minion"
+
 do_install_append() {
         install -d ${D}${sysconfdir}/bash_completion.d/
         install -m 0644 ${WORKDIR}/salt-common.bash_completion ${D}${sysconfdir}/bash_completion.d/${PN}-common
@@ -71,7 +73,6 @@ RPROVIDES_${PN}-minon += "${PN}-minon-systemd"
 RREPLACES_${PN}-minion += "${PN}-minion-systemd"
 RCONFLICTS_${PN}-minion += "${PN}-minion-systemd"
 SYSTEMD_SERVICE_${PN}-minion = "${PN}-minion.service"
-SYSTEMD_AUTO_ENABLE_${PN}-minion = "enable"
 
 SUMMARY_${PN}-common = "shared libraries that salt requires for all packages"
 DESCRIPTION_${PN}-common ="${DESCRIPTION_COMMON} This particular package provides shared libraries that \
