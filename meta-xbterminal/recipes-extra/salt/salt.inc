@@ -14,7 +14,7 @@ DEPENDS = "\
 
 S = "${WORKDIR}/${SRCNAME}-${PV}"
 
-inherit setuptools update-rc.d
+inherit setuptools update-rc.d systemd allarch
 
 PACKAGES += "\
            ${PN}-api \
@@ -43,6 +43,8 @@ do_install_append() {
         install -m 0644 ${WORKDIR}/cloud ${D}${sysconfdir}/${PN}/cloud
         install -m 0644 ${WORKDIR}/roster ${D}${sysconfdir}/${PN}/roster
         install -d ${D}${sysconfdir}/${PN}/cloud.conf.d ${D}${sysconfdir}/${PN}/cloud.profiles.d ${D}${sysconfdir}/${PN}/cloud.providers.d
+        install -d ${D}${systemd_unitdir}/system/
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/pkg/${PN}-minion.service  ${D}${systemd_unitdir}/system/${PN}-minion.service
 }
 
 ALLOW_EMPTY_${PN} = "1"
@@ -64,9 +66,12 @@ RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto p
 RRECOMMENDS_${PN}-minion_append_x64 = "dmidecode"
 RSUGGESTS_${PN}-minion = "python-augeas"
 CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion"
-FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion}"
-INITSCRIPT_NAME_${PN}-minion = "${PN}-minion"
-INITSCRIPT_PARAMS_${PN}-minion = "defaults"
+FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion} ${systemd_unitdir}/system/${PN}-minion.service"
+RPROVIDES_${PN}-minon += "${PN}-minon-systemd"
+RREPLACES_${PN}-minion += "${PN}-minion-systemd"
+RCONFLICTS_${PN}-minion += "${PN}-minion-systemd"
+SYSTEMD_SERVICE_${PN}-minion = "${PN}-minion.service"
+SYSTEMD_AUTO_ENABLE_${PN}-minion = "enable"
 
 SUMMARY_${PN}-common = "shared libraries that salt requires for all packages"
 DESCRIPTION_${PN}-common ="${DESCRIPTION_COMMON} This particular package provides shared libraries that \
