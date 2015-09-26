@@ -14,6 +14,8 @@ SRC_URI = "http://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.
            file://salt-syndic \
            file://cloud \
            file://roster \
+           file://grains.conf \
+           file://master.conf \
 "
 
 SRC_URI[md5sum] = "1a8e9e658d900b314fc3720ba51cc663"

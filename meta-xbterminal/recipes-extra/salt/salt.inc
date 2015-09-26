@@ -47,6 +47,9 @@ do_install_append() {
         install -d ${D}${sysconfdir}/${PN}/cloud.conf.d ${D}${sysconfdir}/${PN}/cloud.profiles.d ${D}${sysconfdir}/${PN}/cloud.providers.d
         install -d ${D}${systemd_unitdir}/system/
         install -m 0644 ${WORKDIR}/${PN}-${PV}/pkg/${PN}-minion.service  ${D}${systemd_unitdir}/system/${PN}-minion.service
+        install -d ${D}${sysconfdir}/${PN}/minion.d/
+        install -m 0644 ${WORKDIR}/master.conf ${D}${sysconfdir}/${PN}/minion.d/master.conf
+        install -m 0644 ${WORKDIR}/grains.conf ${D}${sysconfdir}/${PN}/minion.d/grains.conf
 }
 
 ALLOW_EMPTY_${PN} = "1"
@@ -67,7 +70,7 @@ DESCRIPTION_${PN}-minion = "${DESCRIPTION_COMMON} This particular package provid
 RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto python-pycrypto python-msgpack python-pyzmq (>= 13.1.0) procps"
 RRECOMMENDS_${PN}-minion_append_x64 = "dmidecode"
 RSUGGESTS_${PN}-minion = "python-augeas"
-CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion"
+CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/grains.conf" 
 FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion} ${systemd_unitdir}/system/${PN}-minion.service"
 RPROVIDES_${PN}-minon += "${PN}-minon-systemd"
 RREPLACES_${PN}-minion += "${PN}-minion-systemd"
