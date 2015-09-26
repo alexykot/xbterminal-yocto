@@ -60,7 +60,7 @@ Between the remote execution system, and state management Salt addresses the bac
 
 SUMMARY_${PN}-minion = "client package for salt, the distributed remote execution system"
 DESCRIPTION_${PN}-minion = "${DESCRIPTION_COMMON} This particular package provides the worker agent for salt."
-RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto python-pycrypto python-msgpack python-pyzmq (>= 13.1.0)"
+RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto python-pycrypto python-msgpack python-pyzmq (>= 13.1.0) procps"
 RRECOMMENDS_${PN}-minion_append_x64 = "dmidecode"
 RSUGGESTS_${PN}-minion = "python-augeas"
 CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion"
