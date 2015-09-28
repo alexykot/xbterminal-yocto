@@ -31,25 +31,26 @@ SYSTEMD_PACKAGES = "${PN}-minion"
 
 do_install_append() {
         install -d ${D}${sysconfdir}/bash_completion.d/
-        install -m 0644 ${WORKDIR}/salt-common.bash_completion ${D}${sysconfdir}/bash_completion.d/${PN}-common
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/pkg/salt.bash ${D}${sysconfdir}/bash_completion.d/${PN}-common
         install -d ${D}${sysconfdir}/logrotate.d/
-        install -m 0644 ${WORKDIR}/salt-common.logrotate ${D}${sysconfdir}/logrotate.d/${PN}-common
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/pkg/rpm/logrotate.salt ${D}${sysconfdir}/logrotate.d/${PN}-common
         install -d ${D}${sysconfdir}/init.d/
-        install -m 0755 ${WORKDIR}/salt-minion ${D}${sysconfdir}/init.d/${PN}-minion
-        install -m 0755 ${WORKDIR}/salt-api ${D}${sysconfdir}/init.d/${PN}-api
-        install -m 0755 ${WORKDIR}/salt-master ${D}${sysconfdir}/init.d/${PN}-master
-        install -m 0755 ${WORKDIR}/salt-syndic ${D}${sysconfdir}/init.d/${PN}-syndic
+        install -m 0755 ${WORKDIR}/${PN}-${PV}/pkg/rpm/salt-minion ${D}${sysconfdir}/init.d/${PN}-minion
+        install -m 0755 ${WORKDIR}/${PN}-${PV}/pkg/rpm/salt-api ${D}${sysconfdir}/init.d/${PN}-api
+        install -m 0755 ${WORKDIR}/${PN}-${PV}/pkg/rpm/salt-master ${D}${sysconfdir}/init.d/${PN}-master
+        install -m 0755 ${WORKDIR}/${PN}-${PV}/pkg/rpm/salt-syndic ${D}${sysconfdir}/init.d/${PN}-syndic
         install -d ${D}${sysconfdir}/${PN}/
-        install -m 0644 ${WORKDIR}/minion ${D}${sysconfdir}/${PN}/minion
-        install -m 0644 ${WORKDIR}/master ${D}${sysconfdir}/${PN}/master
-        install -m 0644 ${WORKDIR}/cloud ${D}${sysconfdir}/${PN}/cloud
-        install -m 0644 ${WORKDIR}/roster ${D}${sysconfdir}/${PN}/roster
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/conf/minion ${D}${sysconfdir}/${PN}/minion
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/conf/master ${D}${sysconfdir}/${PN}/master
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/conf/cloud ${D}${sysconfdir}/${PN}/cloud
+        install -m 0644 ${WORKDIR}/${PN}-${PV}/conf/roster ${D}${sysconfdir}/${PN}/roster
         install -d ${D}${sysconfdir}/${PN}/cloud.conf.d ${D}${sysconfdir}/${PN}/cloud.profiles.d ${D}${sysconfdir}/${PN}/cloud.providers.d
         install -d ${D}${systemd_unitdir}/system/
         install -m 0644 ${WORKDIR}/${PN}-${PV}/pkg/${PN}-minion.service  ${D}${systemd_unitdir}/system/${PN}-minion.service
         install -d ${D}${sysconfdir}/${PN}/minion.d/
         install -m 0644 ${WORKDIR}/master.conf ${D}${sysconfdir}/${PN}/minion.d/master.conf
         install -m 0644 ${WORKDIR}/grains.conf ${D}${sysconfdir}/${PN}/minion.d/grains.conf
+
 }
 
 ALLOW_EMPTY_${PN} = "1"
@@ -70,7 +71,7 @@ DESCRIPTION_${PN}-minion = "${DESCRIPTION_COMMON} This particular package provid
 RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto python-pycrypto python-msgpack python-pyzmq (>= 13.1.0) procps"
 RRECOMMENDS_${PN}-minion_append_x64 = "dmidecode"
 RSUGGESTS_${PN}-minion = "python-augeas"
-CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/grains.conf" 
+CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/grains.conf"
 FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion} ${systemd_unitdir}/system/${PN}-minion.service"
 RPROVIDES_${PN}-minon += "${PN}-minon-systemd"
 RREPLACES_${PN}-minion += "${PN}-minion-systemd"
