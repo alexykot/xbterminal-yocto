@@ -13,6 +13,7 @@ IMAGE_INSTALL += "\
     connman connman-conf connman-client \
     gnupg xbthq-certificates apt-xbthq-repository \
     xbterminal-firmware \
+    salt-minion salt-common\
     "
 
 # Set root password
