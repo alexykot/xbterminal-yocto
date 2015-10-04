@@ -41,7 +41,7 @@ do_install () {
     cp -r ${S}/xbterminal ${D}${servicedir}/xbterminal/
     chmod 755 ${D}${servicedir}/xbterminal/xbterminal/main
     install -d ${D}${systemd_unitdir}/system/ 
-    install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/${PN}.serivce
+    install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/${PN}.service
 }
 
 FILES_${PN} = "${servicedir}/xbterminal \ 
