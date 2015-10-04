@@ -1,3 +1,3 @@
 require ${BPN}.inc
 
-PR = "r6"
+PR = "r7"
