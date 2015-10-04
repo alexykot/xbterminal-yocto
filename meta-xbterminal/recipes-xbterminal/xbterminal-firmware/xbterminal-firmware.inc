@@ -3,7 +3,7 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-PR = "r7"
+PR = "r8"
 
 SRC_URI_wandboard-solo = " file://xbterminal-firmware_${PV}_armhf.tar.gz"
 SRC_URI_qemuarm = " file://xbterminal-firmware_${PV}_armel.tar.gz"
@@ -47,7 +47,7 @@ do_install () {
 }
 
 FILES_${PN} = "${servicedir}/xbterminal \ 
-               ${systemd_unitdir}/system/${PN}.serivce \
+               ${systemd_unitdir}/system/${PN}.service \
               "
 
 INHIBIT_PACKAGE_STRIP = "1"
