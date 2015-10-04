@@ -9,6 +9,11 @@ SRC_URI_qemuarm = " file://xbterminal-firmware_${PV}_armel.tar.gz"
 S_wandboard-solo = "${WORKDIR}/xbterminal-firmware_${PV}_armhf"
 S_qemuarm = "${WORKDIR}/xbterminal-firmware_${PV}_armel"
 
+SRC_URI_append = " file://xbterminal-firmware.service "
+
+inherit systemd
+SYSTEMD_PACKAGES = "${PN}"
+
 RDEPENDS_${PN} = "\
     python-modules \
     python-pyqt \
@@ -35,8 +40,12 @@ do_install () {
     mkdir -p ${D}${servicedir}/xbterminal
     cp -r ${S}/xbterminal ${D}${servicedir}/xbterminal/
     chmod 755 ${D}${servicedir}/xbterminal/xbterminal/main
+    install -d ${D}${systemd_unitdir}/system/ 
+    install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/${PN}.serivce
 }
 
-FILES_${PN} = "${servicedir}/xbterminal"
+FILES_${PN} = "${servicedir}/xbterminal \ 
+               ${systemd_unitdir}/system/${PN}.serivce \
+              "
 
 INHIBIT_PACKAGE_STRIP = "1"
