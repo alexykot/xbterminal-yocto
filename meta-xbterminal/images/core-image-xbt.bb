@@ -9,7 +9,6 @@ inherit core-image
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \
-    ttf-dejavu-sans \
     util-linux git nano htop usbutils ntp \
     connman connman-conf connman-client \
     gnupg xbthq-certificates apt-xbthq-repository \
