@@ -16,7 +16,7 @@ RestartSec=60
 StartLimitInterval=660
 StartLimitBurst=10
 
-
+Environment=DISPLAY=:0
 
 [Install]
 WantedBy=multi-user.target

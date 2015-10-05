@@ -1,0 +1,21 @@
+[Unit]
+Description=Xbterminal X Service
+After=syslog.target 
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/X -nocursor
+Nice=-3
+
+KillMode=control-group
+TimeoutStopSec=600
+
+Restart=on-failure
+RestartSec=30
+StartLimitInterval=330
+StartLimitBurst=5
+
+
+
+[Install]
+WantedBy=multi-user.target
