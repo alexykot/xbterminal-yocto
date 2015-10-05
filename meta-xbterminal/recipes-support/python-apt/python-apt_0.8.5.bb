@@ -11,4 +11,4 @@ inherit setuptools
 
 S = "${WORKDIR}/python-apt-0.8.5"
 
-DEPENDS += "apt python-pyflakes"
+DEPENDS += "apt"
