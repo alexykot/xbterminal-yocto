@@ -12,8 +12,8 @@ IMAGE_INSTALL += "\
     util-linux git nano htop usbutils ntp \
     connman connman-conf connman-client \
     gnupg xbthq-certificates apt-xbthq-repository \
+    salt-minion salt-common \
     xbterminal-firmware \
-    salt-minion salt-common\
     "
 
 # Set root password
