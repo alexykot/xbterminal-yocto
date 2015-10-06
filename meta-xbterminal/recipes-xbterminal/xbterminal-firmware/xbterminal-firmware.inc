@@ -3,7 +3,13 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-PR = "r9"
+python () {
+    version_full = d.getVar('XBTFW_VERSION_FULL', True)
+    if version_full:
+        d.setVar('PV', version_full)
+}
+
+INC_PR = "r0"
 
 SRC_URI_wandboard-solo = " file://xbterminal-firmware_${PV}_armhf.tar.gz"
 SRC_URI_qemuarm = " file://xbterminal-firmware_${PV}_armel.tar.gz"
