@@ -9,6 +9,8 @@ python () {
         d.setVar('PV', version_full)
 }
 
+INC_PR = "r0"
+
 SRC_URI_wandboard-solo = " file://xbterminal-firmware_${PV}_armhf.tar.gz"
 SRC_URI_qemuarm = " file://xbterminal-firmware_${PV}_armel.tar.gz"
 
