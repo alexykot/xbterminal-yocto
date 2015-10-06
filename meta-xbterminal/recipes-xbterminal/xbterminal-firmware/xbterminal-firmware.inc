@@ -29,6 +29,7 @@ RDEPENDS_${PN} = "\
     fswebcam \
     icu \
     qt4-plugin-imageformat-gif \
+    ttf-dejavu-sans \
     "
 
 do_install () {
