@@ -1,7 +1,8 @@
 [Unit]
 Description=Xbterminal Firmware Service
 After=syslog.target network.target
-Wants=bluetooth.service
+Wants=bluetooth.service ntpd.service
+Requires=xbterminal-x.service
 
 [Service]
 Type=simple
