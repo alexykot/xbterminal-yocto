@@ -1,0 +1,23 @@
+[Unit]
+Description=Xbterminal Firmware Service
+After=syslog.target network.target
+Wants=bluetooth.service ntpd.service
+Requires=xbterminal-x.service
+
+[Service]
+Type=simple
+ExecStart=/srv/xbterminal/xbterminal/main
+Nice=-5
+
+KillMode=control-group
+TimeoutStopSec=600
+
+Restart=on-failure
+RestartSec=60
+StartLimitInterval=660
+StartLimitBurst=10
+
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=multi-user.target
