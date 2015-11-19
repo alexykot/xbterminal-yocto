@@ -14,6 +14,7 @@ IMAGE_INSTALL += "\
     gnupg xbthq-certificates apt-xbthq-repository \
     salt-minion salt-common \
     xbterminal-firmware \
+    xbterminal-firmware-theme-default \
     "
 
 # Set root password
