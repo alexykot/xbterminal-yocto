@@ -53,7 +53,6 @@ do_install () {
     install -d ${D}${systemd_unitdir}/system/ 
     install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/${PN}.service
     install -m 0644 ${WORKDIR}/xbterminal-x.service ${D}${systemd_unitdir}/system/xbterminal-x.service
-
 }
 
 FILES_${PN} = "${servicedir}/xbterminal \ 
