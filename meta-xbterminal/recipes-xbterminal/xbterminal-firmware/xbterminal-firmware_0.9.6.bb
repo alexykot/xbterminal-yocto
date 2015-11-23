@@ -1,6 +1,6 @@
 require ${BPN}.inc
 
-PR = "${INC_PR}.2"
+PR = "${INC_PR}.3"
 
 FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main \
                ${servicedir}/xbterminal/xbterminal/runtime \
@@ -21,3 +21,5 @@ python populate_packages_prepend () {
 }
 
 PACKAGES_DYNAMIC = "${PN}-theme-.*"
+
+RDEPENDS_${PN} += "xbterminal-firmware-theme-default"
