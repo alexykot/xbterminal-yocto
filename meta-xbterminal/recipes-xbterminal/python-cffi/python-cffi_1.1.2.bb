@@ -3,7 +3,7 @@ HOMEPAGE = "https://cffi.readthedocs.org/"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5677e2fdbf7cdda61d6dd2b57df547bf"
 
-PR = "r1"
+PR = "r2"
 
 SRC_URI = "https://pypi.python.org/packages/source/c/cffi/cffi-${PV}.tar.gz"
 SRC_URI[md5sum] = "ca6e6c45b45caa87aee9adc7c796eaea"
