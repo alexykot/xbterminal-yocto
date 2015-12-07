@@ -3,7 +3,7 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-INC_PR = "r5"
+INC_PR = "r6"
 
 def get_pkgv(d):
     return d.getVar('XBTFW_PKGV', True) or d.getVar('PV', True)
@@ -44,6 +44,7 @@ RDEPENDS_${PN} = "\
     icu \
     qt4-plugin-imageformat-gif \
     ttf-dejavu-sans \
+    python-itl-bsp \
     "
 
 do_install () {
