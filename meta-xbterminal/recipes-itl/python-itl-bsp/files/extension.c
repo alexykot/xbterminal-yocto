@@ -6,22 +6,26 @@
 static PyObject*
 add_credit(PyObject* self, PyObject* args)
 {
-    ITL_BSP_AddCredit(100);
+    int amount;
+    if (!PyArg_ParseTuple(args, "i", &amount)) {
+        return NULL;
+    }
+    ITL_BSP_AddCredit(amount);
     Py_RETURN_NONE;
 }
 
 static PyObject*
 get_payout(PyObject* self, PyObject* args)
 {
-    uint16_t payout;
-    ITL_BSP_GetPayout(&payout);
-    Py_RETURN_NONE;
+    uint16_t amount;
+    ITL_BSP_GetPayout(&amount);
+    return Py_BuildValue("i", amount);
 }
 
 static PyMethodDef functions[] =
 {
     {"add_credit", add_credit, METH_VARARGS, "Add credit."},
-    {"get_payout", get_payout, METH_VARARGS, "Get payout."},
+    {"get_payout", get_payout, METH_NOARGS, "Get payout."},
     {NULL, NULL, 0, NULL}
 };
 
