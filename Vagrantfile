@@ -1,8 +1,14 @@
 Vagrant.configure(2) do |config|
-  config.vm.box = "debian/jessie64"  # Supports card reader
+  config.vm.box = "debian/jessie64"
+  config.vm.box_version = "8.2.2"
   config.vm.hostname = "xbt-build"
   config.ssh.username = "vagrant"
   config.ssh.password = "vagrant"
+
+  # Force vboxsf (debian/jessie64 uses rsync by default)
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
+  config.vbguest.auto_update = true  # Requires vagrant-vbguest plugin
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "XBTerminal Build"
@@ -30,9 +36,9 @@ Vagrant.configure(2) do |config|
     end
     vb.customize [
       'storageattach', :id,
-      '--storagectl', 'IDE Controller',
-      '--port', 0,
-      '--device', 1,
+      '--storagectl', 'SATA Controller',
+      '--port', 1,
+      '--device', 0,
       '--type', 'hdd',
       '--medium', second_disk
     ]
