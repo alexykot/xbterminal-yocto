@@ -1,8 +1,8 @@
 diff --git a/include/configs/wandboard.h b/include/configs/wandboard.h
-index 0088e5c..bf28d93 100644
+index 953ebd9..d8bd642 100644
 --- a/include/configs/wandboard.h
 +++ b/include/configs/wandboard.h
-@@ -159,7 +159,7 @@
+@@ -116,7 +116,7 @@
  			"fi; "	\
  		"fi\0" \
  	"mmcargs=setenv bootargs console=${console},${baudrate} " \

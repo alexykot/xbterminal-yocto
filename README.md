@@ -15,7 +15,7 @@ Put the installation package into directory `meta-xbterminal/recipes-xbterminal/
 
 ## Build image
 
-Edit `conf/local.conf` and choose a build target (**qemuarm** or **wandboard-solo**).
+Edit `conf/local.conf` and choose a build target (**qemuarm** or **wandboard**).
 
 Then build an image:
 
@@ -33,7 +33,7 @@ runqemu qemuarm
 To write a **wandboard-solo** image to SD card:
 
 ```
-sudo dd if=tmp/deploy/images/wandboard-solo/core-image-xbt-wandboard-solo.sdcard of=/dev/mmcblk0 bs=1M
+sudo dd if=tmp/deploy/images/wandboard/core-image-xbt-wandboard.sdcard of=/dev/mmcblk0 bs=1M
 ```
 
 Login:
