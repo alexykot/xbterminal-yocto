@@ -1,8 +1,8 @@
-PR = "r1"
-
 DESCRIPTION = "XBTerminal HQ Repository"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=4eed5be50c30ca03c23569314c3895ec"
+
+PR = "r2"
 
 RDEPENDS_${PN} = "\
                  xbthq-certificates \
@@ -15,10 +15,8 @@ SRC_URI = " file://00ssl-xbt-client-auth \
             file://xbt.crt \
             file://xbt_dev_signing.key \
             file://trusted.gpg \
+            file://xbt-dev_${MACHINE}.list \
           "
-
-SRC_URI_append_qemuarm = ' file://xbt-dev_qemuarm.list '
-SRC_URI_append_wandboard-solo = ' file://xbt-dev_wandboard-solo.list '
 
 inherit allarch
 

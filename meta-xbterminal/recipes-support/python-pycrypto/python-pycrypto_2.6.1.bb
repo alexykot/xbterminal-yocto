@@ -29,5 +29,5 @@ DEPENDS += " gmp"
 # *don't* want the autotools install to run, since this package doesn't
 # provide a "make install" target.
 do_install() {
-	distutils_do_install
+    distutils_do_install
 }

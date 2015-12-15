@@ -18,10 +18,10 @@ su - vagrant -c "cp /vagrant/ssh_config .ssh/config"
 
 # Prepare build environment
 su - vagrant <<"EOF"
-git clone -b fido git://git.yoctoproject.org/poky
-git clone -b fido git://git.openembedded.org/meta-openembedded
-git clone -b fido https://github.com/Freescale/meta-fsl-arm
-git clone -b fido https://github.com/Freescale/meta-fsl-arm-extra
+git clone -b jethro git://git.yoctoproject.org/poky
+git clone -b jethro git://git.openembedded.org/meta-openembedded
+git clone -b jethro https://github.com/Freescale/meta-fsl-arm
+git clone -b jethro https://github.com/Freescale/meta-fsl-arm-extra
 ln -s /vagrant xbterminal-yocto
 source poky/oe-init-build-env
 cp /vagrant/conf/bblayers.conf conf/
