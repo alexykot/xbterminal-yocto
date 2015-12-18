@@ -1,2 +1,2 @@
-deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtos-qemu-dev/ poky main
-deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtfw-qemu-dev/ poky main
+deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtos-qemuarm-dev/ poky main
+deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtfw-qemuarm-dev/ poky main
