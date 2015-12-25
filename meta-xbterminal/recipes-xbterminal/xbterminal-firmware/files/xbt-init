@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Usage: xbt-init [batch_number]
+
+set -e
+
+BATCH_NUMBER=${1:-"00000000000000000000000000000000"}
+
+# Write batch number
+echo $BATCH_NUMBER > /srv/xbterminal/xbterminal/runtime/batch_number
+# Generate device key
+DEVICE_KEY=`cat /etc/machine-id | sha256sum | cut -d " " -f 1`
+echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
+# Write minion id
+echo $DEVICE_KEY > /etc/salt/minion_id
+# Restart salt-minion
+systemctl restart salt-minion
+
+if [ $BATCH_NUMBER = "00000000000000000000000000000000" ]
+then
+    # Use dev server
+    echo -e "{\n    \"use_dev_remote_server\": true\n}" > /srv/xbterminal/xbterminal/runtime/local_config
+else
+    # Enable xbterminal-firmware service
+    systemctl enable xbterminal-firmware
+fi
+
+echo "Done."
+echo "Device key ${DEVICE_KEY}."
