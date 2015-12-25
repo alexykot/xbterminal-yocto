@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Usage: xbt-init [batch_number]
 
@@ -9,9 +9,10 @@ BATCH_NUMBER=${1:-"00000000000000000000000000000000"}
 # Write batch number
 echo $BATCH_NUMBER > /srv/xbterminal/xbterminal/runtime/batch_number
 # Generate device key
-cat /etc/machine-id | sha256sum | cut -d " " -f 1 > /srv/xbterminal/xbterminal/runtime/device_key
+DEVICE_KEY=`cat /etc/machine-id | sha256sum | cut -d " " -f 1`
+echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
 # Write minion id
-cp /srv/xbterminal/xbterminal/runtime/device_key /etc/salt/minion_id
+echo $DEVICE_KEY > /etc/salt/minion_id
 # Restart salt-minion
 systemctl restart salt-minion
 
@@ -24,4 +25,5 @@ else
     systemctl enable xbterminal-firmware
 fi
 
-
+echo "Done."
+echo "Device key ${DEVICE_KEY}."
