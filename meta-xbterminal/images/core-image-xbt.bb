@@ -1,11 +1,9 @@
-SUMMARY = "A console-only image that fully supports the target device \
-hardware."
-
-IMAGE_FEATURES += "splash package-management"
-
+SUMMARY = "An image that fully supports the XBTerminal device."
 LICENSE = "MIT"
 
 inherit core-image
+
+IMAGE_FEATURES += "splash package-management"
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver xinit xset \

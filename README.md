@@ -15,12 +15,12 @@ Put the installation package into directory `meta-xbterminal/recipes-xbterminal/
 
 ## Build image
 
-Edit `conf/local.conf` and choose a build target (**qemuarm** or **wandboard**).
+Edit `conf/local.conf` and choose a build target (**qemuarm**, **wandboard** or **imx6ulevk**).
 
 Then build an image:
 
 ```
-bitbake core-image-xbt
+bitbake core-image-xbt-dev
 ```
 
 To boot a **qemuarm** image:
