@@ -11,9 +11,11 @@ def get_pkgv(d):
 PKGV = "${@get_pkgv(d)}"
 
 SRC_URI_wandboard = " file://xbterminal-firmware_${PKGV}_armhf.tar.gz"
+SRC_URI_imx6ulevk = " file://xbterminal-firmware_${PKGV}_armhf.tar.gz"
 SRC_URI_qemuarm = " file://xbterminal-firmware_${PKGV}_armel.tar.gz"
 
 S_wandboard = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
+S_imx6ulevk = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
 S_qemuarm = "${WORKDIR}/xbterminal-firmware_${PKGV}_armel"
 
 SRC_URI_append = " file://xbterminal-firmware.service \

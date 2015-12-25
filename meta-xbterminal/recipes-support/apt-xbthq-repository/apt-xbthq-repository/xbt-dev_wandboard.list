@@ -1,2 +1,2 @@
-deb https://repo.xbthq.co.uk/repos/deb/fido/xbtos-wandboard-dev/ poky main
-deb https://repo.xbthq.co.uk/repos/deb/fido/xbtfw-wandboard-dev/ poky main
+deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtos-wandboard-dev/ poky main
+deb https://repo.xbthq.co.uk/repos/deb/jethro/xbtfw-wandboard-dev/ poky main
