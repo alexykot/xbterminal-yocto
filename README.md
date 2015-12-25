@@ -33,7 +33,7 @@ runqemu qemuarm
 To write a **wandboard** image to SD card:
 
 ```
-sudo dd if=tmp/deploy/images/wandboard/core-image-xbt-wandboard.sdcard of=/dev/mmcblk0 bs=1M
+sudo dd if=tmp/deploy/images/wandboard/core-image-xbt-dev-wandboard.sdcard of=/dev/mmcblk0 bs=1M
 ```
 
 Login:
