@@ -50,7 +50,7 @@ do_install_append() {
         install -d ${D}${sysconfdir}/${PN}/minion.d/
         install -m 0644 ${WORKDIR}/master.conf ${D}${sysconfdir}/${PN}/minion.d/master.conf
         install -m 0644 ${WORKDIR}/grains.conf ${D}${sysconfdir}/${PN}/minion.d/grains.conf
-
+        echo "  machine: ${MACHINE}" >> ${D}${sysconfdir}/${PN}/minion.d/grains.conf
 }
 
 ALLOW_EMPTY_${PN} = "1"
