@@ -2,7 +2,7 @@ DESCRIPTION = "ITL BSP library"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=bba292d8225b99f2596365092d239929"
 
-PR = "r2"
+PR = "r0"
 
 SRC_URI = "file://lib \
            file://inc \
