@@ -30,13 +30,15 @@ xinit
 runqemu qemuarm
 ```
 
-To write a **wandboard** image to SD card:
+To write a **wandboard** or **imx6ulevk** image to SD card:
 
 ```
-sudo dd if=tmp/deploy/images/wandboard/core-image-xbt-dev-wandboard.sdcard of=/dev/mmcblk0 bs=1M
+sudo dd if=core-image-xbt-dev-wandboard.sdcard of=/dev/mmcblk0 bs=1M
 ```
 
-Login:
+Built images can also be found at https://repo.xbthq.co.uk:8080/
+
+## Login
 
 ```
 User: root  
