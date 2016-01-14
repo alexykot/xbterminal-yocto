@@ -72,7 +72,7 @@ DESCRIPTION_${PN}-minion = "${DESCRIPTION_COMMON} This particular package provid
 RDEPENDS_${PN}-minion = "python ${PN}-common (= ${EXTENDPKGV}) python-m2crypto python-pycrypto python-msgpack python-pyzmq (>= 13.1.0) procps python-apt"
 RRECOMMENDS_${PN}-minion_append_x64 = "dmidecode"
 RSUGGESTS_${PN}-minion = "python-augeas"
-CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/grains.conf"
+CONFFILES_${PN}-minion = "${sysconfdir}/${PN}/minion ${sysconfdir}/init.d/${PN}-minion ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/grains.conf ${sysconfdir}/minion.d/modules.conf"
 FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion} ${systemd_unitdir}/system/${PN}-minion.service"
 RPROVIDES_${PN}-minon += "${PN}-minon-systemd"
 RREPLACES_${PN}-minion += "${PN}-minion-systemd"
