@@ -8,7 +8,7 @@ SRCNAME = "salt"
 SRC_URI = "https://pypi.python.org/packages/source/s/${SRCNAME}/${SRCNAME}-${PV}.tar.gz \
            file://grains.conf \
            file://master.conf \
-           file://modules \
+           file://modules.conf \
 "
 
 SRC_URI[md5sum] = "5919fcb6be4deeafab9746febd7da1ef"
