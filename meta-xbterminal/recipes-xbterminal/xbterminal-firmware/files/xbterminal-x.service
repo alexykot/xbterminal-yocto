@@ -1,10 +1,10 @@
 [Unit]
 Description=Xbterminal X Service
-After=syslog.target 
+After=syslog.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/X -nocursor
+ExecStart=/usr/bin/X -nocursor -logfile /dev/null -quiet -verbose 0
 Nice=-3
 
 KillMode=control-group
