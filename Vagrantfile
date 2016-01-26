@@ -16,9 +16,8 @@ Vagrant.configure(2) do |config|
     vb.memory = 2048
     vb.cpus = 2
 
-    # Enable USB 2.0
+    # Enable USB
     vb.customize ['modifyvm', :id, '--usb', 'on']
-    vb.customize ['modifyvm', :id, '--usbehci', 'on']
 
     # Get disk path
     line = `VBoxManage list systemproperties | grep "Default machine folder"`
