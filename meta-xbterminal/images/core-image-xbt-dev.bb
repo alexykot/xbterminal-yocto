@@ -4,4 +4,4 @@ SUMMARY = "An image that fully supports the XBTerminal device (development versi
 LICENSE = "MIT"
 
 IMAGE_FEATURES += "ssh-server-openssh"
-IMAGE_INSTALL_append = " openssh-sftp-server curl python-pip"
+IMAGE_INSTALL_append = " openssh-sftp-server curl python-pip mc"

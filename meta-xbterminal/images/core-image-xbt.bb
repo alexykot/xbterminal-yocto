@@ -6,7 +6,7 @@ inherit core-image
 IMAGE_FEATURES += "splash package-management"
 
 IMAGE_INSTALL += "\
-    packagegroup-core-x11-xserver xinit xset \
+    packagegroup-core-x11-xserver xinit xset xinput-calibrator \
     util-linux git nano htop usbutils ntp \
     connman connman-conf connman-client \
     gnupg xbthq-certificates apt-xbthq-repository \
