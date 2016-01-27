@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_append := ":${THISDIR}/files"
+FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
 
 SRC_URI_append_wandboard = " file://wired.config \
                              file://wired-setup \
