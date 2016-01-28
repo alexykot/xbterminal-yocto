@@ -3,7 +3,7 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-INC_PR = "r7"
+INC_PR = "r8"
 
 def get_pkgv(d):
     return d.getVar('XBTFW_PKGV', True) or d.getVar('PV', True)
@@ -20,6 +20,7 @@ S_qemuarm = "${WORKDIR}/xbterminal-firmware_${PKGV}_armel"
 
 SRC_URI_append = " file://xbterminal-firmware.service \
                    file://xbterminal-x.service \
+                   file://xbt-init \
                  "
 
 inherit systemd
@@ -47,20 +48,41 @@ RDEPENDS_${PN} = "\
     qt4-plugin-imageformat-gif \
     ttf-dejavu-sans \
     python-itl-bsp \
+    xbterminal-firmware-theme-default \
     "
 
 do_install () {
     mkdir -p ${D}${servicedir}/xbterminal
     cp -r ${S}/xbterminal ${D}${servicedir}/xbterminal/
     chmod 755 ${D}${servicedir}/xbterminal/xbterminal/main
+
+    install -d ${D}${bindir}/
+    install -m 0755 ${WORKDIR}/xbt-init ${D}${bindir}/xbt-init
+
     install -d ${D}${systemd_unitdir}/system/ 
     install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/${PN}.service
     install -m 0644 ${WORKDIR}/xbterminal-x.service ${D}${systemd_unitdir}/system/xbterminal-x.service
 }
 
-FILES_${PN} = "${servicedir}/xbterminal \ 
+FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main \
+               ${servicedir}/xbterminal/xbterminal/runtime \
+               ${servicedir}/xbterminal/xbterminal/gui/ts \
                ${systemd_unitdir}/system/${PN}.service \
                ${systemd_unitdir}/system/xbterminal-x.service \
+               ${bindir}/xbt-init \
               "
+
+python populate_packages_prepend () {
+    themes_dir = d.expand('${servicedir}/xbterminal/xbterminal/gui/themes/')
+    theme_pn = d.expand('${PN}-theme-%s')
+    do_split_packages(
+        d,
+        themes_dir,
+        '^(.+)\.so$',
+        theme_pn,
+        'XBTerminal firmware - UI theme %s')
+}
+
+PACKAGES_DYNAMIC = "${PN}-theme-.*"
 
 INHIBIT_PACKAGE_STRIP = "1"
