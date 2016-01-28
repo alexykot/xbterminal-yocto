@@ -1,0 +1,13 @@
+[Unit]
+Description=XBTerminal Device Initialization Service
+After=syslog.target network-online.target
+Wants=network-online.target
+Before=xbterminal-firmware.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/xbt-init
+Environment=XBT_INIT_PRODUCTION_MODE=true
+
+[Install]
+WantedBy=multi-user.target

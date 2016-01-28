@@ -9,7 +9,7 @@ IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver \
     xinit xset xterm xauth xinput-calibrator \
     util-linux git nano htop usbutils ntp \
-    connman connman-conf connman-client \
+    connman connman-conf connman-client connman-wait-online \
     gnupg xbthq-certificates apt-xbthq-repository \
     salt-minion salt-common \
     xbterminal-firmware \

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cpt=0
+while true; do
+
+ 	dbus-send --system --type=method_call --print-reply --dest=net.connman / net.connman.Manager.GetProperties | grep "ready\|online" > /dev/null
+
+	if [ $? -eq 0 ] ; then
+		exit 0
+	fi
+
+	cpt=$((cpt+1))
+        if [ $cpt -gt 350 ] ; then #Give up after 1min
+                echo "Give up trying to wait for network connection..."
+                exit 1;
+        fi
+
+	usleep 200000
+
+done

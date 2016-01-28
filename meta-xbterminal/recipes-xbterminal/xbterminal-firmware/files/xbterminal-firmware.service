@@ -1,7 +1,7 @@
 [Unit]
-Description=Xbterminal Firmware Service
+Description=XBTerminal Firmware Service
 After=syslog.target network.target
-Wants=bluetooth.service ntpd.service
+Wants=bluetooth.service ntpd.service salt-minion.service
 Requires=xbterminal-x.service
 
 [Service]

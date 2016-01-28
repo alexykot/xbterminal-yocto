@@ -1,6 +1,7 @@
 [Unit]
-Description=Xbterminal X Service
-After=syslog.target 
+Description=XBTerminal X Service
+After=syslog.target
+PartOf=xbterminal-firmware.service
 
 [Service]
 Type=simple
