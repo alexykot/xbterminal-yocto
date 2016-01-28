@@ -6,13 +6,13 @@ set -e
 
 if [ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]
 then
-    if [ "$1" == "" ]
+    if [ $XBT_INIT_PRODUCTION_MODE == true ]
     then
         # Started as systemd service (core-image-xbt image)
         BATCH_NUMBER=$(wget https://xbterminal.io/api/v2/batches/current/ -q -O -)
     else
         # Manual execution (core-image-xbt-dev image)
-        BATCH_NUMBER=$1
+        BATCH_NUMBER=${1:-"00000000000000000000000000000000"}
     fi
 
     # Write batch number
