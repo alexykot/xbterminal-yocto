@@ -4,9 +4,9 @@
 
 set -e
 
-if [ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]
+if [[ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]]
 then
-    if [ $XBT_INIT_PRODUCTION_MODE == true ]
+    if [[ "$XBT_INIT_PRODUCTION_MODE" = true ]]
     then
         # Started as systemd service (core-image-xbt image)
         BATCH_NUMBER=$(wget https://xbterminal.io/api/v2/batches/current/ -q -O -)
@@ -28,7 +28,7 @@ then
     # Restart salt-minion
     systemctl restart salt-minion
 
-    if [ $BATCH_NUMBER == "00000000000000000000000000000000" ]
+    if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
     then
         # Use dev server; don't run firmware
         echo -e "{\n    \"use_dev_remote_server\": true\n}" > /srv/xbterminal/xbterminal/runtime/local_config
