@@ -7,10 +7,16 @@ IMAGE_FEATURES += "splash package-management"
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver \
-    util-linux git nano htop usbutils ntp \
-    connman connman-conf connman-client connman-wait-online \
-    gnupg xbthq-certificates apt-xbthq-repository \
-    salt-minion salt-common \
+    ntp \
+    connman \
+    connman-conf \
+    connman-client \
+    connman-wait-online \
+    gnupg \
+    xbthq-certificates \
+    apt-xbthq-repository \
+    salt-minion \
+    salt-common \
     xbterminal-firmware \
     "
 
