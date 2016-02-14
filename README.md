@@ -3,7 +3,6 @@
 ```
 git clone git@bitbucket.org:xbterminal/xbterminal-yocto.git
 cd xbterminal-yocto
-vagrant plugin install vagrant-vbguest
 vagrant up
 vagrant ssh
 source poky/oe-init-build-env
