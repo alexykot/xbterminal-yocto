@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 fdisk -u /dev/sdb <<EOF
 n
 p
