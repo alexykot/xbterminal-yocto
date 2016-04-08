@@ -4,7 +4,17 @@ SUMMARY = "An image that fully supports the XBTerminal device (development versi
 LICENSE = "MIT"
 
 IMAGE_FEATURES += "ssh-server-openssh"
-IMAGE_INSTALL_append = " openssh-sftp-server curl python-pip mc"
+IMAGE_INSTALL_append = "\
+    util-linux \
+    usbutils \
+    curl \
+    openssh-sftp-server \
+    git \
+    python-pip \
+    nano \
+    htop \
+    mc \
+    "
 
 # Disable xbterminal services for dev image
 disable_xbterminal_services () {

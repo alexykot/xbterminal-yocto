@@ -28,6 +28,12 @@ then
     # Restart salt-minion
     systemctl restart salt-minion
 
+    # Run touchscreen calibrator if present
+    if [[ -e /usr/bin/xinput_calibrator_once.sh ]]
+    then
+        xinit xinput_calibrator_once.sh
+    fi
+
     if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
     then
         # Use dev server; don't run firmware

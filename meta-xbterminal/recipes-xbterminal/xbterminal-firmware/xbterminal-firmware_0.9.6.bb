@@ -1,3 +1,3 @@
 require ${BPN}.inc
 
-PR = "${INC_PR}.7"
+PR = "${INC_PR}.8"
