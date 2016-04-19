@@ -3,15 +3,12 @@ HOMEPAGE = "https://cryptography.io/"
 LICENSE = "Apache-2.0 & BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8c3617db4fb6fae01f1d253ab91511e4"
 
-PR = "r5"
+PR = "r1"
 
-SRC_URI = "https://pypi.python.org/packages/source/c/cryptography/cryptography-${PV}.tar.gz"
-SRC_URI[md5sum] = "70af3fbce7683b31d173eba225f18650"
-SRC_URI[sha256sum] = "aed022f738dd9adb840d92960b0464ea1fbb222ba118938858eb93fe25151c2d"
+SRC_URI[md5sum] = "bc8148d2ff2d80fef8ef2d2e856b3a7f"
+SRC_URI[sha256sum] = "b4b36175e0f95ddc88435c26dbe3397edce48e2ff5fe41d504cdb3beddcd53e2"
 
-inherit setuptools
-
-S = "${WORKDIR}/cryptography-${PV}"
+inherit pypi
 
 DEPENDS += "\
     python-cffi-native \
@@ -23,11 +20,14 @@ DEPENDS += "\
     python-idna"
 
 RDEPENDS_${PN} = "\
+    python-misc \
+    python-setuptools \
     python-cffi \
     python-pycparser \
-    python-six \
-    python-misc \
     python-enum34 \
+    python-six \
+    python-pyasn1 \
     python-ipaddress \
-    python-idna \
-    python-setuptools"
+    python-idna"
+
+FILES_${PN}-dbg += " ${PYTHON_SITEPACKAGES_DIR}/*/*/*/.debug"
