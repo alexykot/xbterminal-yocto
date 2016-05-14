@@ -25,6 +25,13 @@ then
     echo $DEVICE_KEY > /etc/salt/minion_id
     echo "New device key ${DEVICE_KEY}"
 
+    if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
+    then
+        # Use dev server; don't run firmware
+        echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/local_config
+        echo "environment: stage" > /etc/salt/minion.d/env.conf
+    fi
+
     # Restart salt-minion
     systemctl restart salt-minion
 
@@ -32,13 +39,6 @@ then
     if [[ -e /usr/bin/xinput_calibrator_once.sh ]]
     then
         xinit xinput_calibrator_once.sh
-    fi
-
-    if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
-    then
-        # Use dev server; don't run firmware
-        echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/local_config
-        echo "environment: stage" > /etc/salt/minion.d/env.conf
     fi
 
     echo "Device successfully initialized"
