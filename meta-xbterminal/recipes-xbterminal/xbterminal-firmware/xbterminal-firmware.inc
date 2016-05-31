@@ -42,7 +42,6 @@ RDEPENDS_${PN} = "\
     python-psutil \
     python-ntplib \
     python-protobuf \
-    python-adafruit-bbio \
     python-nfcpy \
     zbar \
     fswebcam \
