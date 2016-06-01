@@ -9,7 +9,7 @@ PR = "r0"
 SRC_URI[md5sum] = "c8a571bfdba778555156af3facaea6fc"
 SRC_URI[sha256sum] = "5b34ffa74ac34f330bff949c94ee00ec4a9d147234db17ee2eed2a67c0275368"
 
-inherit pypi setuptools
+inherit pypi
 
 PYPI_PACKAGE = "PyUSB"
 PYPI_PACKAGE_HASH = "8a1966fb48a4905e472f5dfeda3a1bafac369fbf6d6fc5cf55b780864962652d"
