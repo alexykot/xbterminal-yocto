@@ -37,12 +37,10 @@ RDEPENDS_${PN} = "\
     python-pybluez \
     python-cryptography \
     python-qrcode \
-    python-wifi \
     python-requests \
     python-psutil \
     python-ntplib \
     python-protobuf \
-    python-adafruit-bbio \
     python-nfcpy \
     zbar \
     fswebcam \
