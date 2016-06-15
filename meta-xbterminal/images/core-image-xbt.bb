@@ -21,7 +21,7 @@ IMAGE_INSTALL += "\
     "
 
 # Touchscreen calibrator
-IMAGE_INSTALL_append_imx6ulevk = " xinit xset xterm xauth xinput-calibrator"
+IMAGE_INSTALL_append_mx6ul = " xinit xset xterm xauth xinput-calibrator"
 
 # Set root password
 inherit extrausers
