@@ -14,7 +14,7 @@ apt-get install --yes dosfstools htop mc
 apt-get install --yes gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
 # Copy SSH config
-su - vagrant -c "cp /vagrant/ssh_config .ssh/config"
+su - vagrant -c "cp /vagrant/vagrant/ssh_config .ssh/config"
 
 # Prepare build environment
 su - vagrant <<"EOF"
