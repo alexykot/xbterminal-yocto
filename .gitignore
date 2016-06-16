@@ -1,2 +1,4 @@
 .vagrant
+vagrant/settings.yml
+
 meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files/*.tar.gz
