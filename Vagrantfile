@@ -1,12 +1,20 @@
+require 'yaml'
+
 Vagrant.configure(2) do |config|
+  settings = YAML::load_file("vagrant/default_settings.yml")
+  begin
+    settings.merge!(YAML::load_file("vagrant/settings.yml"))
+  rescue Errno::ENOENT
+  end
+
   config.vm.box = "debian/contrib-jessie64"
   config.vm.hostname = "xbt-build"
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "XBTerminal Build"
     vb.gui = true
-    vb.memory = 2048
-    vb.cpus = 2
+    vb.memory = settings['vm']['memory']
+    vb.cpus = settings['vm']['cpus']
 
     # Enable USB
     vb.customize ['modifyvm', :id, '--usb', 'on']
@@ -22,7 +30,7 @@ Vagrant.configure(2) do |config|
         'createhd',
         '--filename', second_disk,
         '--format', 'VDI', 
-        '--size', 90 * 1024  # 90 GB
+        '--size', settings['vm']['disk_size'] * 1024  # Convert GB to MB
       ]
     end
     vb.customize [
@@ -35,6 +43,6 @@ Vagrant.configure(2) do |config|
     ]
   end
 
-  config.vm.provision "shell", path: "add_disk.sh"
-  config.vm.provision "shell", path: "provision.sh"
+  config.vm.provision "shell", path: "vagrant/add_disk.sh"
+  config.vm.provision "shell", path: "vagrant/provision.sh"
 end
