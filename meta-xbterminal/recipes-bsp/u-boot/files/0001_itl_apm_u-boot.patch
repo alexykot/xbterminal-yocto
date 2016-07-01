@@ -1,0 +1,97 @@
+diff --git a/arch/arm/cpu/armv7/mx6/Kconfig b/arch/arm/cpu/armv7/mx6/Kconfig
+index 8489182..0137521 100644
+--- a/arch/arm/cpu/armv7/mx6/Kconfig
++++ b/arch/arm/cpu/armv7/mx6/Kconfig
+@@ -110,6 +110,13 @@ config TARGET_MX6UL_14X14_EVK
+ 	select DM_THERMAL
+ 	select SUPPORT_SPL
+ 
++config TARGET_MX6UL_ITL_APM
++	bool "mx6ul_itl_apm"
++	select MX6UL
++	select DM
++	select DM_THERMAL
++	select SUPPORT_SPL
++
+ config TARGET_NITROGEN6X
+ 	bool "nitrogen6x"
+ 
+@@ -176,5 +183,6 @@ source "board/tqc/tqma6/Kconfig"
+ source "board/udoo/Kconfig"
+ source "board/wandboard/Kconfig"
+ source "board/warp/Kconfig"
++source "board/innovativetechnology/mx6ul_itl_apm/Kconfig"
+ 
+ endif
+diff --git a/arch/arm/imx-common/spl.c b/arch/arm/imx-common/spl.c
+index ac6e40e..7c25aec 100644
+--- a/arch/arm/imx-common/spl.c
++++ b/arch/arm/imx-common/spl.c
+@@ -12,6 +12,7 @@
+ #include <asm/arch/imx-regs.h>
+ #include <asm/spl.h>
+ #include <spl.h>
++//#include <string.h>
+ 
+ #if defined(CONFIG_MX6)
+ /* determine boot device from SRC_SBMR1 (BOOT_CFG[4:1]) or SRC_GPR9 register */
+@@ -56,6 +57,7 @@ u32 spl_boot_device(void)
+ 	case 0x8 ... 0xf:
+ 		return BOOT_DEVICE_NAND;
+ 	}
++	
+ 	return BOOT_DEVICE_NONE;
+ }
+ #endif
+diff --git a/common/spl/spl.c b/common/spl/spl.c
+index a5892d7..c848d0a 100644
+--- a/common/spl/spl.c
++++ b/common/spl/spl.c
+@@ -205,6 +205,7 @@ void board_init_r(gd_t *dummy1, ulong dummy2)
+ 
+ 	boot_device = spl_boot_device();
+ 	debug("boot device - %d\n", boot_device);
++	printf("boot device - %d\n", boot_device);
+ 	switch (boot_device) {
+ #ifdef CONFIG_SPL_RAM_DEVICE
+ 	case BOOT_DEVICE_RAM:
+diff --git a/common/spl/spl_mmc.c b/common/spl/spl_mmc.c
+index ce58c58..88e2729 100644
+--- a/common/spl/spl_mmc.c
++++ b/common/spl/spl_mmc.c
+@@ -21,6 +21,8 @@ static int mmc_load_image_raw_sector(struct mmc *mmc, unsigned long sector)
+ 	unsigned long count;
+ 	u32 image_size_sectors;
+ 	struct image_header *header;
++	
++	puts("mmc_load_image_raw_sector\n");
+ 
+ 	header = (struct image_header *)(CONFIG_SYS_TEXT_BASE -
+ 					 sizeof(struct image_header));
+@@ -86,6 +88,8 @@ static int mmc_load_image_raw_partition(struct mmc *mmc, int partition)
+ static int mmc_load_image_raw_os(struct mmc *mmc)
+ {
+ 	unsigned long count;
++	
++	puts("mmc_load_image_raw_os\n");
+ 
+ 	count = mmc->block_dev.block_read(0,
+ 		CONFIG_SYS_MMCSD_RAW_MODE_ARGS_SECTOR,
+@@ -131,6 +135,7 @@ void spl_mmc_load_image(void)
+ 	}
+ #endif
+ 
++	printf("mmc %s\n",mmc->cfg->name);
+ 	if (!err)
+ 		err = mmc_init(mmc);
+ 
+diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+index c58aa4d..63193c9 100644
+--- a/drivers/gpio/Makefile
++++ b/drivers/gpio/Makefile
+@@ -45,4 +45,4 @@ obj-$(CONFIG_STM32_GPIO)	+= stm32_gpio.o
+ obj-$(CONFIG_ZYNQ_GPIO)		+= zynq_gpio.o
+ obj-$(CONFIG_VYBRID_GPIO)	+= vybrid_gpio.o
+ obj-$(CONFIG_HIKEY_GPIO)	+= hi6220_gpio.o
+-
++obj-$(CONFIG_PCF8754_IOEXP)	+= pcf8754_ioexp.o

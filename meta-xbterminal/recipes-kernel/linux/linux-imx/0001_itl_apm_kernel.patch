@@ -1,0 +1,110 @@
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index cb770c3..d8278b0 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -239,6 +239,7 @@ dtb-$(CONFIG_ARCH_MXC) += \
+ 	imx6ul-9x9-evk-btwifi.dtb \
+ 	imx6ul-9x9-evk-ldo.dtb \
+ 	imx6ul-9x9-evk-csi.dtb \
++	imx6ul-itl-apm.dtb \
+ 	vf610-cosmic.dtb \
+ 	imx6sx-sdb-emmc.dtb \
+ 	imx6sx-sdb-m4.dtb \
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index 72fb004..81a3073 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -408,8 +408,8 @@
+ 				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
+ 				reg = <0x02084000 0x4000>;
+ 				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+-				clocks = <&clks IMX6UL_CLK_DUMMY>,
+-					 <&clks IMX6UL_CLK_DUMMY>;
++				clocks = <&clks IMX6UL_CLK_PWM2>,
++					 <&clks IMX6UL_CLK_PWM2>;
+ 				clock-names = "ipg", "per";
+ 				#pwm-cells = <2>;
+ 			};
+diff --git a/arch/arm/configs/imx_v7_defconfig b/arch/arm/configs/imx_v7_defconfig
+index e3315f3..f02f6d1 100644
+--- a/arch/arm/configs/imx_v7_defconfig
++++ b/arch/arm/configs/imx_v7_defconfig
+@@ -92,7 +92,7 @@ CONFIG_DEVTMPFS=y
+ CONFIG_DEVTMPFS_MOUNT=y
+ # CONFIG_STANDALONE is not set
+ CONFIG_DMA_CMA=y
+-CONFIG_CMA_SIZE_MBYTES=320
++CONFIG_CMA_SIZE_MBYTES=64
+ CONFIG_IMX_WEIM=y
+ CONFIG_CONNECTOR=y
+ CONFIG_MTD=y
+@@ -236,6 +236,7 @@ CONFIG_VIDEO_MXC_OUTPUT=y
+ CONFIG_VIDEO_MXC_CAPTURE=m
+ CONFIG_MXC_CAMERA_OV5640=m
+ CONFIG_MXC_CAMERA_OV5642=m
++CONFIG_MXC_CAMERA_OV7670=m
+ CONFIG_MXC_CAMERA_OV5640_MIPI=m
+ CONFIG_MXC_TVIN_ADV7180=m
+ CONFIG_MXC_IPU_DEVICE_QUEUE_SDC=m
+diff --git a/drivers/media/platform/mxc/capture/Kconfig b/drivers/media/platform/mxc/capture/Kconfig
+index e8728d9..ad16a9d 100644
+--- a/drivers/media/platform/mxc/capture/Kconfig
++++ b/drivers/media/platform/mxc/capture/Kconfig
+@@ -20,6 +20,12 @@ config MXC_CAMERA_OV5642
+ 	depends on !VIDEO_MXC_EMMA_CAMERA && I2C
+ 	---help---
+ 	  If you plan to use the ov5642 Camera with your MXC system, say Y here.
++	  
++config MXC_CAMERA_OV7670
++        tristate "OmniVision ov7670 camera support"
++        depends on !VIDEO_MXC_EMMA_CAMERA && I2C
++        ---help---
++          If you plan to use the ov7670 Camera with your MXC system, say Y here.
+ 
+ config MXC_CAMERA_OV5640_MIPI
+ 	tristate "OmniVision ov5640 camera support using mipi"
+diff --git a/drivers/media/platform/mxc/capture/Makefile b/drivers/media/platform/mxc/capture/Makefile
+index 6c04faf..8b7e473 100644
+--- a/drivers/media/platform/mxc/capture/Makefile
++++ b/drivers/media/platform/mxc/capture/Makefile
+@@ -12,6 +12,9 @@ obj-$(CONFIG_MXC_CAMERA_OV5640) += ov5640_camera_int.o
+ ov5642_camera-objs := ov5642.o
+ obj-$(CONFIG_MXC_CAMERA_OV5642) += ov5642_camera.o
+ 
++ov7670_camera_int-objs := ov7670.o
++obj-$(CONFIG_MXC_CAMERA_OV7670) += ov7670_camera_int.o
++
+ ov5640_camera_mipi_int-objs := ov5640_mipi.o
+ obj-$(CONFIG_MXC_CAMERA_OV5640_MIPI) += ov5640_camera_mipi_int.o
+ 
+diff --git a/drivers/media/platform/mxc/subdev/Kconfig b/drivers/media/platform/mxc/subdev/Kconfig
+index b8e0ebb..1678ceb 100644
+--- a/drivers/media/platform/mxc/subdev/Kconfig
++++ b/drivers/media/platform/mxc/subdev/Kconfig
+@@ -12,6 +12,12 @@ config MXC_CAMERA_OV5640
+         ---help---
+           If you plan to use the ov5640 Camera with your MXC system, say Y here.
+ 
++config MXC_CAMERA_OV7670
++        tristate "OmniVision ov7670 camera support"
++        depends on VIDEO_MXC_CAPTURE && I2C
++        ---help---
++          If you plan to use the ov7670 Camera with your MXC system, say Y here.
++
+ config MXC_VADC
+ 	tristate "mxc VADC support"
+ 	depends on VIDEO_MXC_CAPTURE && VIDEO_V4L2
+diff --git a/drivers/media/platform/mxc/subdev/Makefile b/drivers/media/platform/mxc/subdev/Makefile
+index 25b0d64..55581fb 100644
+--- a/drivers/media/platform/mxc/subdev/Makefile
++++ b/drivers/media/platform/mxc/subdev/Makefile
+@@ -7,6 +7,9 @@ obj-$(CONFIG_MXC_MIPI_CSI) += mxc_mipi_csi.o
+ ov5640_camera-objs := ov5640.o
+ obj-$(CONFIG_MXC_CAMERA_OV5640) += ov5640_camera.o
+ 
++ov7670_camera-objs := ov7670.o
++obj-$(CONFIG_MXC_CAMERA_OV7670) += ov7670_camera.o
++
+ ov5640_camera_mipi-objs := ov5640_mipi.o
+ obj-$(CONFIG_MXC_CAMERA_OV5640_MIPI) += ov5640_camera_mipi.o
+
