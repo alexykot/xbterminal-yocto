@@ -22,6 +22,7 @@ RDEPENDS_${PN} += "\
     ttf-dejavu-sans \
     xbterminal-firmware-theme-default \
     "
+RPROVIDES_${PN} += "xbterminal-app"
 
 do_install () {
     xbtdir=${D}${servicedir}/xbterminal/xbterminal
