@@ -14,7 +14,10 @@ inherit systemd
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
 
-RDEPENDS_${PN} = "xbterminal-app"
+RDEPENDS_${PN} = "\
+    wget \
+    salt-minion \
+    xbterminal-app"
 
 do_install () {
     install -d ${D}${bindir}/
