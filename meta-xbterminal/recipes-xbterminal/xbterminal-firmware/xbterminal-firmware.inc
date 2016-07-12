@@ -3,7 +3,7 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-INC_PR = "r10"
+INC_PR = "r11"
 
 def get_pkgv(d):
     return d.getVar('XBTFW_PKGV', True) or d.getVar('PV', True)
@@ -50,9 +50,15 @@ RDEPENDS_${PN} = "\
     "
 
 do_install () {
-    mkdir -p ${D}${servicedir}/xbterminal
-    cp -r ${S}/xbterminal ${D}${servicedir}/xbterminal/
-    chmod 755 ${D}${servicedir}/xbterminal/xbterminal/main
+    xbtdir=${D}${servicedir}/xbterminal/xbterminal
+    mkdir -p ${xbtdir}
+    install -m 0755 ${S}/xbterminal/main ${xbtdir}/main
+    install -d ${xbtdir}/runtime
+    install -d ${xbtdir}/gui
+    install -d ${xbtdir}/gui/themes
+    install -m 0644 ${S}/xbterminal/gui/themes/*.so ${xbtdir}/gui/themes/
+    install -d ${xbtdir}/gui/ts
+    install -m 0644 ${S}/xbterminal/gui/ts/*.qm ${xbtdir}/gui/ts/
 
     install -d ${D}${bindir}/
     install -m 0755 ${WORKDIR}/xbt-init ${D}${bindir}/xbt-init
