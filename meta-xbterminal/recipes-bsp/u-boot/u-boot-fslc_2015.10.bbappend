@@ -4,4 +4,6 @@ FILESEXTRAPATHS_append := ":${THISDIR}/files"
 SRC_URI_append_wandboard = " file://fix_config_wandboard_mmcargs.patch "
 
 # Apply custom patch from ITL
-SRC_URI_append_imx6ulevk-itl = " file://0001_itl_apm_u-boot.patch file://0002_itl_apm_u-boot.patch "
+SRC_URI_append_imx6ulevk-itl = "\
+    file://0001_itl_apm_u-boot.patch \
+    file://0002_itl_apm_u-boot.patch"
