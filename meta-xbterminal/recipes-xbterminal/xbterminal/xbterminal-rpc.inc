@@ -18,6 +18,8 @@ RDEPENDS_${PN} += "\
     python-json-rpc \
     python-tornado \
     "
+PROVIDES += "xbterminal-app"
+RPROVIDES_${PN} += "xbterminal-app"
 RCONFLICTS_${PN} = "xbterminal-firmware"
 
 do_install () {

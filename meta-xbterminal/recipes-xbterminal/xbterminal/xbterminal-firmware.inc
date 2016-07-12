@@ -22,6 +22,7 @@ RDEPENDS_${PN} += "\
     ttf-dejavu-sans \
     xbterminal-firmware-theme-default \
     "
+PROVIDES += "xbterminal-app"
 RPROVIDES_${PN} += "xbterminal-app"
 RCONFLICTS_${PN} = "xbterminal-rpc"
 

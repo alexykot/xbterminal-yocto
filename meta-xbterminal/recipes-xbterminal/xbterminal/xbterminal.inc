@@ -1,5 +1,5 @@
 def get_pkgv(d):
-    return d.getVar('XBTFW_PKGV', True) or d.getVar('PV', True)
+    return d.getVar('XBT_PKGV', True) or d.getVar('PV', True)
 
 PKGV = "${@get_pkgv(d)}"
 
