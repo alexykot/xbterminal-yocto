@@ -1,0 +1,12 @@
+[Unit]
+Description=XBTerminal JSON-RPC server
+After=syslog.target network.target
+Wants=bluetooth.service ntpd.service salt-minion.service
+
+[Service]
+Type=simple
+ExecStart=/srv/xbterminal/xbterminal/main_rpc
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target

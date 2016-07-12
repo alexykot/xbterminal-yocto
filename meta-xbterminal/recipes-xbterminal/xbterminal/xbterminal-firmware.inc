@@ -23,9 +23,11 @@ RDEPENDS_${PN} += "\
     xbterminal-firmware-theme-default \
     "
 RPROVIDES_${PN} += "xbterminal-app"
+RCONFLICTS_${PN} = "xbterminal-rpc"
 
 do_install () {
     xbtdir=${D}${servicedir}/xbterminal/xbterminal
+
     mkdir -p ${xbtdir}
     install -m 0755 ${S}/xbterminal/main ${xbtdir}/main
     install -d ${xbtdir}/runtime
