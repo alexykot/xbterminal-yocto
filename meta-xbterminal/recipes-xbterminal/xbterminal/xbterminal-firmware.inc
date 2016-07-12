@@ -1,9 +1,9 @@
-require xbterminal.inc
-
-DESCRIPTION = "XBTerminal firmware"
+DESCRIPTION = "XBTerminal GUI application"
 HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
+
+require xbterminal.inc
 
 INC_PR = "r13"
 
@@ -11,7 +11,6 @@ SRC_URI_append = " file://xbterminal-x.service \
                    file://xbterminal-firmware.service \
                  "
 
-inherit systemd
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
 
@@ -22,8 +21,6 @@ RDEPENDS_${PN} += "\
     ttf-dejavu-sans \
     xbterminal-firmware-theme-default \
     "
-PROVIDES += "xbterminal-app"
-RPROVIDES_${PN} += "xbterminal-app"
 RCONFLICTS_${PN} = "xbterminal-rpc"
 
 do_install () {

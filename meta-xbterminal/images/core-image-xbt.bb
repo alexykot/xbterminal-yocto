@@ -17,7 +17,7 @@ IMAGE_INSTALL += "\
     apt-xbthq-repository \
     salt-minion \
     salt-common \
-    xbterminal-app \
+    xbterminal \
     "
 
 # Touchscreen calibrator

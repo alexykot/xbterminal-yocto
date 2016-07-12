@@ -1,3 +1,5 @@
+inherit systemd
+
 def get_pkgv(d):
     return d.getVar('XBT_PKGV', True) or d.getVar('PV', True)
 
@@ -27,3 +29,5 @@ RDEPENDS_${PN} = "\
     python-itl-bsp \
     xbterminal-init \
     "
+PROVIDES += "xbterminal"
+RPROVIDES_${PN} += "xbterminal"

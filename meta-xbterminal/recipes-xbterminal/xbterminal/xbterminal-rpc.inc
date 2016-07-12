@@ -1,15 +1,13 @@
-require xbterminal.inc
-
 DESCRIPTION = "XBTerminal JSON-RPC server"
 HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
+require xbterminal.inc
+
 INC_PR = "r0"
 
 SRC_URI_append = " file://xbterminal-rpc.service "
-
-inherit systemd
 
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE_${PN} = "${PN}.service"
@@ -18,8 +16,6 @@ RDEPENDS_${PN} += "\
     python-json-rpc \
     python-tornado \
     "
-PROVIDES += "xbterminal-app"
-RPROVIDES_${PN} += "xbterminal-app"
 RCONFLICTS_${PN} = "xbterminal-firmware"
 
 do_install () {

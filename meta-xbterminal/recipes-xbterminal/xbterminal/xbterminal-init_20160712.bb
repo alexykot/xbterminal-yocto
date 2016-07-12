@@ -17,7 +17,7 @@ SYSTEMD_SERVICE_${PN} = "${PN}.service"
 RDEPENDS_${PN} = "\
     wget \
     salt-minion \
-    xbterminal-app"
+    xbterminal"
 
 do_install () {
     install -d ${D}${bindir}/
