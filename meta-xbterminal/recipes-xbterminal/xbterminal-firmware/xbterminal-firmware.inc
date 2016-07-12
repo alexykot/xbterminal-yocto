@@ -3,20 +3,18 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-INC_PR = "r9"
+INC_PR = "r10"
 
 def get_pkgv(d):
     return d.getVar('XBTFW_PKGV', True) or d.getVar('PV', True)
 
 PKGV = "${@get_pkgv(d)}"
 
-SRC_URI_wandboard = " file://xbterminal-firmware_${PKGV}_armhf.tar.gz"
-SRC_URI_imx6ulevk = " file://xbterminal-firmware_${PKGV}_armhf.tar.gz"
-SRC_URI_qemuarm = " file://xbterminal-firmware_${PKGV}_armel.tar.gz"
+SRC_URI_armv5 = " file://xbterminal-firmware_${PKGV}_armel.tar.gz"
+SRC_URI_armv7a = " file://xbterminal-firmware_${PKGV}_armhf.tar.gz"
 
-S_wandboard = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
-S_imx6ulevk = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
-S_qemuarm = "${WORKDIR}/xbterminal-firmware_${PKGV}_armel"
+S_armv5 = "${WORKDIR}/xbterminal-firmware_${PKGV}_armel"
+S_armv7a = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
 
 SRC_URI_append = " file://xbterminal-init.service \
                    file://xbterminal-x.service \

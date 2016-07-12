@@ -11,7 +11,7 @@ apt-get install --yes dosfstools htop mc
 
 # Install required packages
 # http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
-apt-get install --yes gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
+apt-get install --yes gawk wget ca-certificates git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
 
 # Copy SSH config
 su - vagrant -c "cp /vagrant/vagrant/ssh_config .ssh/config"
