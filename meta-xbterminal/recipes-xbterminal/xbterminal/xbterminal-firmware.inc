@@ -5,17 +5,15 @@ HOMEPAGE = "https://xbterminal.io"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
-INC_PR = "r12"
+INC_PR = "r13"
 
-SRC_URI_append = " file://xbterminal-init.service \
-                   file://xbterminal-x.service \
+SRC_URI_append = " file://xbterminal-x.service \
                    file://xbterminal-firmware.service \
-                   file://xbt-init \
                  "
 
 inherit systemd
 SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "xbterminal-init.service xbterminal-firmware.service"
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
 
 RDEPENDS_${PN} += "\
     python-pyqt \
@@ -36,20 +34,15 @@ do_install () {
     install -d ${xbtdir}/gui/ts
     install -m 0644 ${S}/xbterminal/gui/ts/*.qm ${xbtdir}/gui/ts/
 
-    install -d ${D}${bindir}/
-    install -m 0755 ${WORKDIR}/xbt-init ${D}${bindir}/xbt-init
-
     install -d ${D}${systemd_unitdir}/system/
-    install -m 0644 ${WORKDIR}/*.service ${D}${systemd_unitdir}/system/
+    install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/
 }
 
 FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main \
                ${servicedir}/xbterminal/xbterminal/runtime \
                ${servicedir}/xbterminal/xbterminal/gui/ts \
-               ${systemd_unitdir}/system/xbterminal-init.service \
                ${systemd_unitdir}/system/xbterminal-x.service \
                ${systemd_unitdir}/system/xbterminal-firmware.service \
-               ${bindir}/xbt-init \
               "
 
 python populate_packages_prepend () {

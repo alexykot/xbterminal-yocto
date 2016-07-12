@@ -25,4 +25,5 @@ RDEPENDS_${PN} = "\
     zbar \
     fswebcam \
     python-itl-bsp \
+    xbterminal-init \
     "
