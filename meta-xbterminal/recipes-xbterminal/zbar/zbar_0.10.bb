@@ -3,7 +3,9 @@ HOMEPAGE = "http://zbar.sourceforge.net/"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=243b725d71bb5df4a1e5920b344b86ad"
 
-SRC_URI = "${SOURCEFORGE_MIRROR}/zbar/zbar-${PV}.tar.bz2 \
+PR = "r1"
+
+SRC_URI = "https://pypi.python.org/packages/source/z/zbar/zbar-0.10.tar.bz2 \
            file://disable_warnings.patch \
            file://fix_python_include.patch \
            file://fix_v4l1_header_name.patch \
