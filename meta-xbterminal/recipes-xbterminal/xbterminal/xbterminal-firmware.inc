@@ -36,7 +36,7 @@ do_install () {
     install -m 0644 ${S}/xbterminal/gui/ts/*.qm ${xbtdir}/gui/ts/
 
     install -d ${D}${systemd_unitdir}/system/
-    install -m 0644 ${WORKDIR}/${PN}.service ${D}${systemd_unitdir}/system/
+    install -m 0644 ${WORKDIR}/*.service ${D}${systemd_unitdir}/system/
 }
 
 FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main \
