@@ -1,0 +1,12 @@
+[Unit]
+Description=Manage swap file
+After=local-fs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/swapfile start
+ExecStop=/usr/bin/swapfile stop
+
+[Install]
+WantedBy=local-fs.target
