@@ -11,8 +11,8 @@ SRC_URI = "https://pypi.python.org/packages/source/z/zbar/zbar-0.10.tar.bz2 \
            file://fix_v4l1_header_name.patch \
            file://fix_v4l1_include.patch \
            file://fix_segfault_on_import.patch"
-SRC_URI[md5sum] = "0fd61eb590ac1bab62a77913c8b086a5"
-SRC_URI[sha256sum] = "234efb39dbbe5cef4189cc76f37afbe3cfcfb45ae52493bfe8e191318bdbadc6"
+SRC_URI[md5sum] = "f82f03485a504538314d7d11b7450178"
+SRC_URI[sha256sum] = "597dc972199341426d74e9edc42dbde76c6ee6a884ec2039a81d266300a6d46b"
 
 inherit autotools pkgconfig python-dir distutils-base gettext
 
