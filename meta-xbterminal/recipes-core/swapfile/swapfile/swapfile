@@ -2,7 +2,7 @@
 
 case $1 in
      start)
-          fallocate -l 60M /swapfile
+          fallocate -l 102400K /swapfile
           chmod 0600 /swapfile
           mkswap /swapfile
           swapon  /swapfile
