@@ -29,7 +29,7 @@ EXTRA_USERS_PARAMS = "usermod -P root root;"
 
 # Swap file
 IMAGE_INSTALL_append_imx6ulevk-itl = " swapfile "
-IMAGE_ROOTFS_EXTRA_SPACE_imx6ulevk-itl = "61440"
+IMAGE_ROOTFS_EXTRA_SPACE_imx6ulevk-itl = "102400"
 
 # DNS
 set_dns_servers () {
