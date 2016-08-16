@@ -5,18 +5,27 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
 require xbterminal.inc
 
-INC_PR = "r0"
+INC_PR = "r1"
 
 SRC_URI_append = " file://xbterminal-rpc.service "
 
-SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
-
 RDEPENDS_${PN} += "\
+    python-dbus \
+    python-imaging \
+    python-pyusb \
+    python-pybluez \
+    python-cryptography \
+    python-psutil \
+    python-ntplib \
+    python-protobuf \
+    python-nfcpy \
     python-json-rpc \
     python-tornado \
+    zbar \
+    fswebcam \
+    python-itl-bsp \
+    xbterminal-init \
     "
-RCONFLICTS_${PN} = "xbterminal-firmware"
 
 do_install () {
     xbtdir=${D}${servicedir}/xbterminal/xbterminal

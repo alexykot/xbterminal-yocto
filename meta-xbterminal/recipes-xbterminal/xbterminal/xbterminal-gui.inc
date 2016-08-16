@@ -5,29 +5,26 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
 require xbterminal.inc
 
-INC_PR = "r13"
+INC_PR = "r0"
 
 SRC_URI_append = " file://xbterminal-x.service \
-                   file://xbterminal-firmware.service \
-                 "
-
-SYSTEMD_PACKAGES = "${PN}"
-SYSTEMD_SERVICE_${PN} = "${PN}.service"
+                   file://xbterminal-gui.service"
 
 RDEPENDS_${PN} += "\
     python-pyqt \
+    python-qrcode \
     icu \
     qt4-plugin-imageformat-gif \
     ttf-dejavu-sans \
-    xbterminal-firmware-theme-default \
+    xbterminal-rpc \
+    xbterminal-gui-theme-default \
     "
-RCONFLICTS_${PN} = "xbterminal-rpc"
 
 do_install () {
     xbtdir=${D}${servicedir}/xbterminal/xbterminal
 
     mkdir -p ${xbtdir}
-    install -m 0755 ${S}/xbterminal/main ${xbtdir}/main
+    install -m 0755 ${S}/xbterminal/main_gui ${xbtdir}/main_gui
     install -d ${xbtdir}/runtime
     install -d ${xbtdir}/gui
     install -d ${xbtdir}/gui/themes
@@ -39,11 +36,11 @@ do_install () {
     install -m 0644 ${WORKDIR}/*.service ${D}${systemd_unitdir}/system/
 }
 
-FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main \
+FILES_${PN} = "${servicedir}/xbterminal/xbterminal/main_gui \
                ${servicedir}/xbterminal/xbterminal/runtime \
                ${servicedir}/xbterminal/xbterminal/gui/ts \
                ${systemd_unitdir}/system/xbterminal-x.service \
-               ${systemd_unitdir}/system/xbterminal-firmware.service \
+               ${systemd_unitdir}/system/xbterminal-gui.service \
               "
 
 python populate_packages_prepend () {
@@ -54,7 +51,7 @@ python populate_packages_prepend () {
         themes_dir,
         '^(.+)\.so$',
         theme_pn,
-        'XBTerminal firmware - UI theme %s')
+        'XBTerminal GUI theme %s')
 }
 
 PACKAGES_DYNAMIC = "${PN}-theme-.*"
