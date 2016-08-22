@@ -28,7 +28,7 @@ then
     if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
     then
         # Use dev server; don't run firmware
-        echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/local_config
+        echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/rpc_config
         echo "environment: stage" > /etc/salt/minion.d/env.conf
     fi
 
@@ -38,7 +38,7 @@ then
     # Run touchscreen calibrator if present
     if [[ -e /usr/bin/xinput_calibrator_once.sh ]]
     then
-        xinit xinput_calibrator_once.sh
+        xinit xinput_calibrator_once.sh &> /dev/null
     fi
 
     echo "Device successfully initialized"

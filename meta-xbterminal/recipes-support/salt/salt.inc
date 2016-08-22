@@ -53,7 +53,6 @@ do_install_append() {
         install -m 0644 ${WORKDIR}/grains.conf ${D}${sysconfdir}/${PN}/minion.d/grains.conf
         install -m 0644 ${WORKDIR}/modules.conf ${D}${sysconfdir}/${PN}/minion.d/modules.conf
         echo "  machine: ${MACHINE}" >> ${D}${sysconfdir}/${PN}/minion.d/grains.conf
-        echo "  xbt-package: ${PREFERRED_PROVIDER_xbterminal}" >> ${D}${sysconfdir}/${PN}/minion.d/grains.conf
 }
 
 ALLOW_EMPTY_${PN} = "1"

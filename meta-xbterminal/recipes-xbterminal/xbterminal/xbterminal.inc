@@ -1,5 +1,8 @@
 inherit systemd
 
+SYSTEMD_PACKAGES = "${PN}"
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+
 def get_pkgv(d):
     return d.getVar('XBT_PKGV', True) or d.getVar('PV', True)
 
@@ -13,21 +16,5 @@ S_armv7a = "${WORKDIR}/xbterminal-firmware_${PKGV}_armhf"
 
 RDEPENDS_${PN} = "\
     python-modules \
-    python-dbus \
-    python-imaging \
-    python-pyusb \
-    python-pybluez \
-    python-cryptography \
-    python-qrcode \
     python-requests \
-    python-psutil \
-    python-ntplib \
-    python-protobuf \
-    python-nfcpy \
-    zbar \
-    fswebcam \
-    python-itl-bsp \
-    xbterminal-init \
     "
-PROVIDES += "xbterminal"
-RPROVIDES_${PN} += "xbterminal"
