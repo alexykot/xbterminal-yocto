@@ -1,83 +1,22 @@
-Certificate:
-    Data:
-        Version: 3 (0x2)
-        Serial Number: 6 (0x6)
-    Signature Algorithm: sha256WithRSAEncryption
-        Issuer: CN=XBTHQ main CA
-        Validity
-            Not Before: Sep 15 15:45:13 2015 GMT
-            Not After : Sep 14 15:45:13 2016 GMT
-        Subject: CN=qemu.dev
-        Subject Public Key Info:
-            Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
-                Modulus:
-                    00:ce:64:58:a6:c5:a0:c5:06:e0:f6:3d:07:2f:81:
-                    74:7e:2c:c5:79:d5:53:c8:cf:26:4c:2c:54:4b:ea:
-                    24:58:13:fb:0a:ec:c9:ed:6c:9d:8f:5b:5f:b1:2d:
-                    5b:63:dd:1d:d3:74:fc:3a:9c:88:f7:49:96:ba:0e:
-                    69:83:18:db:60:ce:0f:7e:f2:d8:7c:09:86:a0:8e:
-                    e7:a3:80:43:02:dd:a6:f6:45:57:2e:5c:0f:4b:94:
-                    9d:98:07:46:cb:0e:3a:d8:42:aa:81:92:2f:57:41:
-                    10:66:ba:07:80:3d:52:a2:49:dc:b0:d5:6f:1d:b4:
-                    ce:f7:60:f1:d8:c3:90:6f:de:bc:15:9e:35:93:f1:
-                    16:73:c8:37:a1:0d:87:85:fe:6c:6e:57:cf:de:e2:
-                    06:9f:e7:16:cf:1c:15:b7:3c:a3:51:c5:6d:43:47:
-                    94:d4:09:b3:ea:26:bc:0a:53:e9:9c:5d:1a:5e:a5:
-                    af:d3:39:cc:2c:1e:4d:43:71:c5:9c:a1:18:ce:72:
-                    e9:3c:04:e0:80:58:be:3e:39:dc:db:7b:59:33:fd:
-                    08:a2:cf:ef:58:92:03:c6:37:2d:4a:88:a7:05:4c:
-                    b3:2e:e2:2a:5c:d6:03:b6:1b:29:3c:b9:dd:63:58:
-                    c0:bd:5e:97:af:39:ba:9b:07:ee:88:42:f9:48:69:
-                    96:85
-                Exponent: 65537 (0x10001)
-        X509v3 extensions:
-            X509v3 Basic Constraints: 
-                CA:FALSE
-            X509v3 Subject Key Identifier: 
-                57:1E:D9:CB:20:31:10:B3:24:B1:0C:DB:C0:EC:37:76:B0:72:BB:A9
-            X509v3 Authority Key Identifier: 
-                keyid:CA:79:8E:7C:E5:30:B2:E7:E1:E1:3D:4E:9B:B2:7B:AE:50:9A:A2:50
-                DirName:/CN=XBTHQ main CA
-                serial:FB:99:2D:79:75:3C:6F:14
-
-            X509v3 Extended Key Usage: 
-                TLS Web Client Authentication
-            X509v3 Key Usage: 
-                Digital Signature
-    Signature Algorithm: sha256WithRSAEncryption
-         a1:bb:fa:eb:b0:01:b8:36:15:ca:1f:20:05:eb:49:fc:a1:2c:
-         03:96:a6:67:31:98:08:1d:6c:07:e3:65:10:2c:f9:e7:9c:1b:
-         a0:7d:42:99:a8:86:6c:66:29:dd:34:95:ab:81:0b:2b:20:d8:
-         1f:52:16:7c:23:45:78:b8:8c:9a:a1:4f:5a:e9:e5:d8:48:2e:
-         70:a9:ad:7f:24:f0:4a:dd:42:66:64:a7:7a:d9:4c:2b:e0:18:
-         e3:a3:53:44:72:3f:9f:72:a2:fa:1e:59:d6:34:93:aa:d1:b8:
-         f2:96:4e:54:22:82:76:de:17:9e:7a:26:e2:1a:77:54:8e:a4:
-         8a:e1:10:66:17:85:cf:97:d3:84:59:7d:c3:4b:b5:77:7e:c8:
-         6e:29:73:67:b4:8b:1f:a5:df:e1:52:97:b1:77:84:f0:70:4c:
-         55:96:0c:57:15:23:7e:04:0c:5f:cc:b7:a6:4b:24:50:d4:04:
-         3c:d5:90:da:4d:82:ca:d2:44:6a:08:89:c5:ce:aa:f7:32:72:
-         d2:5a:95:6d:1b:9e:a9:f7:50:7e:37:2a:26:88:96:f3:71:7e:
-         93:c3:01:29:f7:92:8b:fc:ab:c8:78:de:e8:63:d1:85:7c:69:
-         2c:27:06:f0:ec:8b:a9:43:99:3b:a5:00:8b:08:be:1f:cd:7e:
-         e9:c2:90:8f
 -----BEGIN CERTIFICATE-----
-MIIDQDCCAiigAwIBAgIBBjANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1YQlRI
-USBtYWluIENBMB4XDTE1MDkxNTE1NDUxM1oXDTE2MDkxNDE1NDUxM1owEzERMA8G
-A1UEAwwIcWVtdS5kZXYwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDO
-ZFimxaDFBuD2PQcvgXR+LMV51VPIzyZMLFRL6iRYE/sK7MntbJ2PW1+xLVtj3R3T
-dPw6nIj3SZa6DmmDGNtgzg9+8th8CYagjuejgEMC3ab2RVcuXA9LlJ2YB0bLDjrY
-QqqBki9XQRBmugeAPVKiSdyw1W8dtM73YPHYw5Bv3rwVnjWT8RZzyDehDYeF/mxu
-V8/e4gaf5xbPHBW3PKNRxW1DR5TUCbPqJrwKU+mcXRpepa/TOcwsHk1DccWcoRjO
-cuk8BOCAWL4+Odzbe1kz/Qiiz+9YkgPGNy1KiKcFTLMu4ipc1gO2Gyk8ud1jWMC9
-XpevObqbB+6IQvlIaZaFAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQU
-Vx7ZyyAxELMksQzbwOw3drByu6kwSAYDVR0jBEEwP4AUynmOfOUwsufh4T1Om7J7
-rlCaolChHKQaMBgxFjAUBgNVBAMMDVhCVEhRIG1haW4gQ0GCCQD7mS15dTxvFDAT
-BgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4AwDQYJKoZIhvcNAQELBQAD
-ggEBAKG7+uuwAbg2FcofIAXrSfyhLAOWpmcxmAgdbAfjZRAs+eecG6B9Qpmohmxm
-Kd00lauBCysg2B9SFnwjRXi4jJqhT1rp5dhILnCprX8k8ErdQmZkp3rZTCvgGOOj
-U0RyP59yovoeWdY0k6rRuPKWTlQignbeF556JuIad1SOpIrhEGYXhc+X04RZfcNL
-tXd+yG4pc2e0ix+l3+FSl7F3hPBwTFWWDFcVI34EDF/Mt6ZLJFDUBDzVkNpNgsrS
-RGoIicXOqvcyctJalW0bnqn3UH43KiaIlvNxfpPDASn3kov8q8h43uhj0YV8aSwn
-BvDsi6lDmTulAIsIvh/NfunCkI8=
+MIIDtjCCAp6gAwIBAgIUBQkRcE7GpPOhiHlZZ6xxeVvJfCkwDQYJKoZIhvcNAQEL
+BQAwVzELMAkGA1UEBhMCR0IxDjAMBgNVBAoTBVhCVEhRMQ8wDQYDVQQHEwZMb25k
+b24xDzANBgNVBAgTBkxvbmRvbjEWMBQGA1UEAxMNWEJUSFEgcm9vdCBDQTAeFw0x
+NjA5MDExNzQ1MDBaFw0xNzA5MDExNzQ1MDBaME0xCzAJBgNVBAYTAkdCMQ8wDQYD
+VQQHEwZMb25kb24xDzANBgNVBAgTBkxvbmRvbjEcMBoGA1UEAxMTeGJ0LWRldi1p
+bWFnZS15b2N0bzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALsjfV1L
+Z4ofGrSc3NIhQsflGX/OC/GIlEonsqWoXgkRgNqh9NxE35rRitJAw7Udn/7GOZUc
+ayKpGOmD5us+2+UFDd7dHZCg2INuo1gK8PW3viGapVCvIwfllf7mpnig7cWlE1Nx
+LuPichWRuElTZYsC1fUzSAgmyxoK3xHvo4qHusFmZ9WicNc2V6PUZ1a+Y5PwE1p+
+3hBlubW9V7cPnsm8IU3VsVTIj4CtRVWWOv4zPv+FU2Gu0EdHMxE8cPTpuu8y8LC1
+tJQeMHyJEmPApwF0aoAhAPeZsboRHeFAD0Gnp4omFqBJijZc5ZClZLPj+2d8UbZD
+x+UPoDkuqq/MPykCAwEAAaOBgzCBgDAOBgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAww
+CgYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUXK0cOkTlChyUHpKX
+fp1G/+WotM4wHwYDVR0jBBgwFoAUCAH1ej7B+7HbimQyB8IqLajABCAwCwYDVR0R
+BAQwAoIAMA0GCSqGSIb3DQEBCwUAA4IBAQCdqY3B0WgbtAIDZdvEvEx0FWwM2aF2
+yPqw3VL+Kyh+pCMJZV/W0UOe8VvRZM9tMZ9G7E3dA/uOfYyF1mEt5SFQKNc5n8FA
+wczVlLhwHX3ganOYQx1xyhQ43j5ahFpGdkJvsegiCi6b47VIvj7x7lZAEO1V/qvi
+RXzj9SfHXIkfDdWEQn6/TurcsoK3bILWZ0GRXz6aUxYBCN14e4i1LDy6ko22webZ
+OFI98qXKbrJZHIbh10ygB6X632s8kB5cWME8dqUMDBIRgciX8sm9HAjtegq6rzgd
+vLTpVqXCZ0tX5p6O5OvIzm8cg+Lglziw5lQtEy9PJACLtuApIqIpNdN/
 -----END CERTIFICATE-----
