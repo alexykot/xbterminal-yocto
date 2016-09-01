@@ -5,11 +5,11 @@ LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=4eed5be50c30ca03c23569314c3895ec"
 
 RDEPENDS_${PN} = "\
-                 ca-certificates \ 
+                 ca-certificates \
                  "
 
 DEPENDS_${PN} = "\
-                 ca-certificates \ 
+                 ca-certificates \
                  "
 
 SRC_URI = " file://xbthq-dev.crt \
@@ -25,7 +25,7 @@ do_install () {
 	install -m 0644 ${WORKDIR}/xbthq-dev.crt ${D}${prefix}/local/share/ca-certificates/xbthq/
 
 
-} 
+}
 
 FILES_${PN} += "${prefix}/local/share/ca-certificates/xbthq/xbthq-dev.crt ${prefix}/local/share/ca-certificates ${prefix}/local/share/ca-certificates/xbthq ${prefix}/local/share ${prefix}/local"
 
@@ -34,4 +34,3 @@ pkg_postinst_${PN} () {
 }
 
 INHIBIT_PACKAGE_STRIP = "1"
-
