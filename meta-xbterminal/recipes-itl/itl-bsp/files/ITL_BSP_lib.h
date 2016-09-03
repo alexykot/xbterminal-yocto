@@ -8,51 +8,51 @@ extern "C" {
 //=============================================================================
 // Return Codes
 //=============================================================================
-enum
-{
-	ITL_BSP_OK			= 0,
-	ITL_BSP_FAIL		= 1,
-};
 
+#include "ITL_BSP_Error.h"
 
 //=============================================================================
 // Definitions
 //=============================================================================
-enum
-{
-	BSP_LED_GREEN			= 0x01,
-	BSP_LED_BLUE			= 0x02,
-	BSP_LED_ORANGE			= 0x04,
-	BSP_LED_RED				= 0x08
-};
+
+// PAYOUT OPTIONS
+#define CASH	1
+#define BITCOIN	2
 
 //=============================================================================
 // Function Definitions
 //=============================================================================
-uint16_t ITL_BSP_GetLibVersion(uint8_t *major, uint8_t *minor, uint8_t *build);
-void ITL_BSP_Buzz( int tone, int duration );
-void ITL_BSP_SetLeds(int leds);
-void ITL_BSP_ClearLeds(int leds);
-uint8_t ITL_BSP_GetPushButton(void);
+int16_t ITL_BSP_GetLibVersion(uint8_t *major, uint8_t *minor, uint8_t *build);
+int16_t ITL_BSP_Init_Paysys(void);
 
-void ITL_BSP_WirelessResetAssert(void);
-void ITL_BSP_WirelessResetDeassert(void);
-void ITL_BSP_WirelessPowerEnAssert(void);
-void ITL_BSP_WirelessPowerEnDeassert(void);
+int16_t ITL_BSP_BuzzerEnable(void);
+int16_t ITL_BSP_PlayTone(uint8_t tone, uint16_t duration);
 
-void ITL_BSP_MircoUpdate(char *filename, uint8_t force_update);
+int16_t ITL_BSP_APMGetStatus(uint8_t *status);
+int16_t ITL_BSP_APMSetStatus(uint8_t status);
 
-uint8_t ITL_BSP_HopperInit(uint8_t channel);
-void ITL_BSP_HopperSetPulseLength(uint8_t channel, uint16_t pulse_length);
-void ITL_BSP_HopperSetPulseTimeout(uint8_t channel, uint16_t timeout);
-uint8_t ITL_BSP_HopperCheckChannelIdle(uint8_t channel);
+int16_t ITL_BSP_MircoUpdate(char *filename, uint8_t force_update);
 
-void ITL_BSP_HopperccTalkInit(void);
-uint16_t ITL_BSP_GetPayout(uint16_t *payout);
-uint16_t ITL_BSP_AddCredit(uint32_t credit);
+int16_t ITL_BSP_HopperccTalkInit(void);
+int16_t ITL_BSP_GetPayoutOptions(uint8_t *options);
+int16_t ITL_BSP_GetPayoutStatus(void);
+int16_t ITL_BSP_GetPayout(uint16_t *payout);
+int16_t ITL_BSP_AddCredit(uint32_t credit);
+int16_t ITL_BSP_PayoutCash( uint16_t amount );
 
-uint16_t ITL_BSP_GetPulses(uint8_t channel, uint16_t *pulses);
-uint16_t ITL_BSP_SendPulses(uint8_t channel, uint16_t pulses);
+int16_t ITL_BSP_SetLED(uint8_t);
+int16_t ITL_BSP_STM32_RST(uint8_t);
+int16_t ITL_BSP_STM32_BSL(uint8_t);
+int16_t ITL_BSP_BL_EN(uint8_t);
+int16_t ITL_BSP_DISP_ON(uint8_t);
+int16_t ITL_BSP_SD1_OC(void);
+int16_t ITL_BSP_ENET_RST(uint8_t);
+
+int16_t ITL_BSP_WriteNDEF(char *);
+int16_t ITL_BSP_ReadNDEF(char *);
+int16_t ITL_BSP_EraseNDEF(void);
+
+int16_t ITL_BSP_GetFram(void);
 
 #if defined (__cplusplus)
 }
