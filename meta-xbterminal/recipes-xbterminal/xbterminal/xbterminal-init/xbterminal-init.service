@@ -2,7 +2,7 @@
 Description=XBTerminal Device Initialization Service
 After=syslog.target network-online.target
 Wants=network-online.target
-Before=xbterminal-firmware.service
+Before=xbterminal-rpc.service xbterminal-x.service xbterminal-gui.service
 
 [Service]
 Type=oneshot
