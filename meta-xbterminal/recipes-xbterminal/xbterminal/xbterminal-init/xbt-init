@@ -38,7 +38,9 @@ then
     # Run touchscreen calibrator if present
     if [[ -e /usr/bin/xinput_calibrator_once.sh ]]
     then
+        echo "Starting touchscreen calibrator..."
         xinit xinput_calibrator_once.sh &> /dev/null
+        echo "Touchscreen calibration done"
     fi
 
     echo "Device successfully initialized"
