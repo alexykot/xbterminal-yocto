@@ -1,9 +1,9 @@
 diff --git a/arch/arm/boot/dts/imx6ul-itl-apm.dts b/arch/arm/boot/dts/imx6ul-itl-apm.dts
 new file mode 100644
-index 0000000..e1b1c3d
+index 0000000..970a445
 --- /dev/null
 +++ b/arch/arm/boot/dts/imx6ul-itl-apm.dts
-@@ -0,0 +1,464 @@
+@@ -0,0 +1,465 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -220,9 +220,8 @@ index 0000000..e1b1c3d
 +
 +&ecspi2 {
 +	fsl,spi-num-chipselects = <2>;
-+	/* cs-gpios = <0&gpio1 29 0>, <&gpio3 4 0>; */
++	cs-gpios = <&gpio1 29 0>, <&gpio3 4 0>;
 +	pinctrl-names = "default";
-+	/* pinctrl-0 = <&pinctrl_ecspi2_1 &pinctrl_ecspi2_cs_1>; */
 +	pinctrl-0 = <&pinctrl_ecspi2_1>;
 +	status = "okay";
 +
@@ -232,11 +231,25 @@ index 0000000..e1b1c3d
 +        spi-max-frequency = <20000000>;
 +	};
 +
-+	//spidev1: spidev@1 {
-+	//	compatible = "spidev";
-+	//	reg = <1>;
-+    //   spi-max-frequency = <20000000>;
-+	//};
++	spidev1: spidev@1 {
++		compatible = "spidev";
++		reg = <1>;
++        spi-max-frequency = <20000000>;
++	};
++
++/*
++	flash: mb85rs16@1 {
++		compatible = "fujitsu,mb85rs16", "fujitsu,mb85", "fujitsu,dataflash";
++		spi-max-frequency = <20000000>;
++		reg = <1>;
++
++		partition@0 {
++			label = "fram";
++			reg = <0x0 0x800>;
++			read-only;
++		};	
++	};
++*/
 +};
 +
 +&qspi {
@@ -445,27 +458,15 @@ index 0000000..e1b1c3d
 +			>;
 +		};
 +
-+/* 	spi2 { */
-+/*	
-+		pinctrl_ecspi2_cs_1: ecspi2_cs_grp-1 {
-+			fsl,pins = <
-+				MX6UL_PAD_UART4_RX_DATA__GPIO1_IO29		0x80000000
-+				MX6UL_PAD_LCD_RESET__GPIO3_IO04			0x80000000
-+				MX6UL_PAD_UART4_RX_DATA__ECSPI2_SS0		0x80000000
-+				MX6UL_PAD_LCD_RESET__ECSPI2_SS3			0x80000000
-+			>;
-+		};
-+*/
-+		
 +		pinctrl_ecspi2_1: ecspi2grp-1 {
 +			fsl,pins = <
 +				MX6UL_PAD_UART4_TX_DATA__ECSPI2_SCLK	0x70a1
 +				MX6UL_PAD_UART5_TX_DATA__ECSPI2_MOSI	0x70a1
 +				MX6UL_PAD_UART5_RX_DATA__ECSPI2_MISO	0x70a1
 +				MX6UL_PAD_UART4_RX_DATA__ECSPI2_SS0		0x80000000
++				MX6UL_PAD_LCD_RESET__ECSPI2_SS3			0x80000000				
 +			>;
-+		};	
-+/*	}; */
++		};
 +	};
 +};
 diff --git a/drivers/media/platform/mxc/capture/ov7670.c b/drivers/media/platform/mxc/capture/ov7670.c

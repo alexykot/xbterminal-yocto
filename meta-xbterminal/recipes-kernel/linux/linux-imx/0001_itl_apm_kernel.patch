@@ -10,6 +10,19 @@ index cb770c3..d8278b0 100644
  	vf610-cosmic.dtb \
  	imx6sx-sdb-emmc.dtb \
  	imx6sx-sdb-m4.dtb \
+diff --git a/arch/arm/boot/dts/imx6ul-pinfunc.h b/arch/arm/boot/dts/imx6ul-pinfunc.h
+index 1bb774b9..e4a33df 100644
+--- a/arch/arm/boot/dts/imx6ul-pinfunc.h
++++ b/arch/arm/boot/dts/imx6ul-pinfunc.h
+@@ -294,7 +294,7 @@
+ #define	MX6UL_PAD_UART5_RX_DATA__CSI_DATA15                      	0x00C0 0x034C 0x0000 3 0
+ #define	MX6UL_PAD_UART5_RX_DATA__CSU_CSU_INT_DEB                 	0x00C0 0x034C 0x0000 4 0
+ #define	MX6UL_PAD_UART5_RX_DATA__GPIO1_IO31                      	0x00C0 0x034C 0x0000 5 0
+-#define	MX6UL_PAD_UART5_RX_DATA__ECSPI2_MISO                     	0x00C0 0x034C 0x0000 8 0
++#define	MX6UL_PAD_UART5_RX_DATA__ECSPI2_MISO                     	0x00C0 0x034C 0x0548 8 1
+ #define	MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00                  	0x00C4 0x0350 0x0000 0 0
+ #define	MX6UL_PAD_ENET1_RX_DATA0__UART4_DCE_RTS                  	0x00C4 0x0350 0x0638 1 0
+ #define	MX6UL_PAD_ENET1_RX_DATA0__UART4_DTE_CTS                  	0x00C4 0x0350 0x0000 1 0
 diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
 index 72fb004..81a3073 100644
 --- a/arch/arm/boot/dts/imx6ul.dtsi
@@ -107,4 +120,20 @@ index 25b0d64..55581fb 100644
 +
  ov5640_camera_mipi-objs := ov5640_mipi.o
  obj-$(CONFIG_MXC_CAMERA_OV5640_MIPI) += ov5640_camera_mipi.o
-
+ 
+diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
+index 230d356..e942768 100644
+--- a/drivers/mmc/host/sdhci-esdhc-imx.c
++++ b/drivers/mmc/host/sdhci-esdhc-imx.c
+@@ -1284,10 +1284,10 @@ static int sdhci_esdhc_imx_probe(struct platform_device *pdev)
+ 		goto disable_clk;
+ 
+ 	pm_runtime_set_active(&pdev->dev);
+-	pm_runtime_enable(&pdev->dev);
+ 	pm_runtime_set_autosuspend_delay(&pdev->dev, 50);
+ 	pm_runtime_use_autosuspend(&pdev->dev);
+ 	pm_suspend_ignore_children(&pdev->dev, 1);
++	pm_runtime_enable(&pdev->dev);
+ 
+ 	return 0;
+ 
