@@ -7,7 +7,6 @@ FILESEXTRAPATHS_append := ":${THISDIR}/linux-imx"
 SRC_URI_append_imx6ulevk-itl = "\
     file://0001_itl_apm_kernel.patch \
     file://0002_itl_apm_kernel.patch \
-    file://0003_itl_apm_pinfunc.patch \
     "
 
 do_configure_prepend_imx6ulevk-itl() {
