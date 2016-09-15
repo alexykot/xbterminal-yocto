@@ -2,7 +2,7 @@ DESCRIPTION = "XBTerminal HQ Repository"
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=4eed5be50c30ca03c23569314c3895ec"
 
-PR = "r2"
+PR = "r3"
 
 RDEPENDS_${PN} = "\
                  xbthq-certificates \
@@ -55,13 +55,7 @@ CONFFILES_${PN} += "\
     "
 
 pkg_postinst_${PN} () {
-#!/bin/sh
-if [ -n "$D" ]; then
-        exit 0
-fi
-apt-key --keyring $D${sysconfdir}/apt/trusted.gpg finger  | true
-apt-key --keyring $D${sysconfdir}/apt/trusted.gpg add $D${sysconfdir}/apt/xbt_dev_signing.key | true
-
+    apt-key --keyring ${sysconfdir}/apt/trusted.gpg add ${sysconfdir}/apt/xbt_dev_signing.key
 }
 
 INHIBIT_PACKAGE_STRIP = "1"
