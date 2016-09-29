@@ -81,10 +81,10 @@ index 0000000..7814af7
 +come up.
 diff --git a/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c b/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c
 new file mode 100644
-index 0000000..4b23682
+index 0000000..85f5ce3
 --- /dev/null
 +++ b/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c
-@@ -0,0 +1,713 @@
+@@ -0,0 +1,719 @@
 +/*
 + * Copyright (C) 2015 Freescale Semiconductor, Inc.
 + *
@@ -601,6 +601,12 @@ index 0000000..4b23682
 +		uint8_t gpio_exp;
 +		/* Turn on the LED */
 +		gpio_exp = gpio_exp_direction_output(PCF8754A_LED, 0);
++		
++		/* Clear STM32 Reset */
++		gpio_exp = gpio_exp_direction_output(PCF8754A_STM32_BSL, 0);
++		gpio_exp = gpio_exp_direction_output(PCF8754A_STM32_RST, 0);
++		udelay(50000);
++		gpio_exp = gpio_exp_direction_output(PCF8754A_STM32_RST, 1);
 +		
 +		/* Turn on the Display and Backlight */
 +		gpio_exp = gpio_exp_direction_output(PCF8754A_LCD_DISP_ON, 1);
