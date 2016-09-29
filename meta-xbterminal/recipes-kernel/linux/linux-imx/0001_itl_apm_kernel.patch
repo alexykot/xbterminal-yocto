@@ -39,7 +39,7 @@ index 72fb004..81a3073 100644
  				#pwm-cells = <2>;
  			};
 diff --git a/arch/arm/configs/imx_v7_defconfig b/arch/arm/configs/imx_v7_defconfig
-index e3315f3..f02f6d1 100644
+index e3315f3..b459df1 100644
 --- a/arch/arm/configs/imx_v7_defconfig
 +++ b/arch/arm/configs/imx_v7_defconfig
 @@ -92,7 +92,8 @@ CONFIG_DEVTMPFS=y
@@ -52,7 +52,7 @@ index e3315f3..f02f6d1 100644
  CONFIG_IMX_WEIM=y
  CONFIG_CONNECTOR=y
  CONFIG_MTD=y
-@@ -236,6 +236,7 @@ CONFIG_VIDEO_MXC_OUTPUT=y
+@@ -236,6 +237,7 @@ CONFIG_VIDEO_MXC_OUTPUT=y
  CONFIG_VIDEO_MXC_CAPTURE=m
  CONFIG_MXC_CAMERA_OV5640=m
  CONFIG_MXC_CAMERA_OV5642=m
