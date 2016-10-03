@@ -54,6 +54,20 @@ static PyObject *set_apm_status(PyObject *self, PyObject *args) {
     Py_RETURN_NONE;
 }
 
+static PyObject *write_ndef(PyObject *self, PyObject *args) {
+    char *message;
+    if (!PyArg_ParseTuple(args, "s", &message)) {
+        return NULL;
+    }
+    ITL_BSP_WriteNDEF(message);
+    Py_RETURN_NONE;
+}
+
+static PyObject *erase_ndef(PyObject *self) {
+    ITL_BSP_EraseNDEF();
+    Py_RETURN_NONE;
+}
+
 static PyMethodDef functions[] = {
     {"initialize", (PyCFunction) initialize,
      METH_NOARGS, "Perform initialization."},
@@ -69,6 +83,10 @@ static PyMethodDef functions[] = {
      METH_NOARGS, "Get APM status."},
     {"set_apm_status", (PyCFunction) set_apm_status,
      METH_VARARGS, "Set APM status."},
+    {"write_ndef", (PyCFunction) write_ndef,
+     METH_VARARGS, "Write NDEF message."},
+    {"erase_ndef", (PyCFunction) erase_ndef,
+     METH_NOARGS, "Erase NDEF message."},
     {NULL, NULL, 0, NULL}
 };
 
