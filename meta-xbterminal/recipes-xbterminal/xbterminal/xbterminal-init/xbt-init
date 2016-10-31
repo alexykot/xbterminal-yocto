@@ -32,6 +32,16 @@ then
         echo "environment: stage" > /etc/salt/minion.d/env.conf
     fi
 
+    #initiate hosts file
+    echo "127.0.0.1	localhost.localdomain		localhost" > /etc/hosts
+    #set hostname
+    echo "127.0.1.1 ${DEVICE_KEY}.int   ${DEVICE_KEY}" >> /etc/hosts
+    /usr/bin/hostnamectl set-hostname "${DEVICE_KEY}.int"
+
+    # Restart Syslog-ng, journald
+    systemctl restart syslog-ng.service
+    systemctl restart systemd-journald.service
+
     # Restart salt-minion
     systemctl restart salt-minion
 

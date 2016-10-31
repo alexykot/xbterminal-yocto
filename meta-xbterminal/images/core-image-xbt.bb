@@ -17,6 +17,7 @@ IMAGE_INSTALL += "\
     apt-xbthq-repository \
     salt-minion \
     salt-common \
+    syslog-ng \
     xbterminal-gui \
     "
 
