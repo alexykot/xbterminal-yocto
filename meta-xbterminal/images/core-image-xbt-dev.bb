@@ -21,3 +21,5 @@ disable_xbterminal_services () {
     rm -rf ${IMAGE_ROOTFS}/etc/systemd/system/multi-user.target.wants/xbterminal-*.service
 }
 ROOTFS_POSTPROCESS_COMMAND_append = " disable_xbterminal_services; "
+
+hostname_pn-base-files = "xbterminal-pre-init-dev.int"
