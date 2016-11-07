@@ -1,11 +1,11 @@
-from fabric.api import task, local, run, cd, get, settings, shell_env
+from fabric.api import task, local, run, cd, get, settings, shell_env, prefix
 
 
 @task(default=True)
 def image(machine='imx6ulevk-itl',
           image='core-image-xbt-dev',
-          xbt_pkgv='',
-          xbt_pv=''):
+          xbt_pkgv=None,
+          xbt_pv=None):
     # Get vagrant ssh config
     ssh_config = {}
     local('vagrant up')
@@ -22,11 +22,11 @@ def image(machine='imx6ulevk-itl',
         bb_vars = {
             'BB_ENV_EXTRAWHITE': 'MACHINE XBT_PKGV XBT_PV',
             'MACHINE': machine,
-            'XBT_PKGV': xbt_pkgv,
-            'XBT_PV': xbt_pv,
+            'XBT_PKGV': xbt_pkgv or '',
+            'XBT_PV': xbt_pv or '',
         }
-        with shell_env(**bb_vars):
-            run('. poky/oe-init-build-env && bitbake {image}'.format(image=image))
+        with prefix('. poky/oe-init-build-env'), shell_env(**bb_vars):
+            run('bitbake {image}'.format(image=image))
         # Download image
         with cd('build/tmp/deploy/images/{machine}'.format(machine=machine)):
             local('mkdir -p build')
@@ -37,5 +37,3 @@ def image(machine='imx6ulevk-itl',
 @task
 def clean():
     local("find . -name '*.pyc' -delete")
-
-

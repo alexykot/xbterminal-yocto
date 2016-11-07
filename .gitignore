@@ -1,6 +1,5 @@
 *.pyc
 fabfile/deploy.py
-fabfile/build_itl.py
 
 .vagrant
 vagrant/settings.yml
