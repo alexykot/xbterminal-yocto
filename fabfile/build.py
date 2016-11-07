@@ -1,8 +1,11 @@
-from fabric.api import task, local, run, cd, get, settings
+from fabric.api import task, local, run, cd, get, settings, shell_env
 
 
 @task(default=True)
-def image(machine='imx6ulevk-itl', image='core-image-xbt-dev'):
+def image(machine='imx6ulevk-itl',
+          image='core-image-xbt-dev',
+          xbt_pkgv='',
+          xbt_pv=''):
     # Get vagrant ssh config
     ssh_config = {}
     local('vagrant up')
@@ -16,7 +19,15 @@ def image(machine='imx6ulevk-itl', image='core-image-xbt-dev'):
                   key_filename=ssh_config['IdentityFile'].strip('"'),
                   disable_known_hosts=True):
         # Build image
-        run('. poky/oe-init-build-env && bitbake {image}'.format(image=image))
+        bb_vars = {
+            'BB_ENV_EXTRAWHITE': 'MACHINE XBT_PKGV XBT_PV',
+            'MACHINE': machine,
+            'XBT_PKGV': xbt_pkgv,
+            'XBT_PV': xbt_pv,
+        }
+        with shell_env(**bb_vars):
+            run('. poky/oe-init-build-env && bitbake {image}'.format(image=image))
+        # Download image
         with cd('build/tmp/deploy/images/{machine}'.format(machine=machine)):
             local('mkdir -p build')
             get('{image}-{machine}.sdcard.gz'.format(image=image, machine=machine),
