@@ -1,8 +1,8 @@
 ## Create VM and build environment
 
 ```
-git clone git@bitbucket.org:xbterminal/xbterminal-yocto.git
-cd xbterminal-yocto
+git clone git@bitbucket.org:xbterminal/apm-yocto.git
+cd apm-yocto
 vagrant up
 vagrant ssh
 source poky/oe-init-build-env

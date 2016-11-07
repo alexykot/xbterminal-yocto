@@ -3,7 +3,7 @@ require 'yaml'
 Vagrant.configure(2) do |config|
   settings = YAML::load_file("vagrant/default_settings.yml")
   begin
-    settings.merge!(YAML::load_file("vagrant/settings.yml"))
+    settings.deep_merge!(YAML::load_file("vagrant/settings.yml"))
   rescue Errno::ENOENT
   end
 
@@ -12,12 +12,14 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "XBTerminal Build"
-    vb.gui = true
+    vb.gui = settings['vm']['gui']
     vb.memory = settings['vm']['memory']
     vb.cpus = settings['vm']['cpus']
 
     # Enable USB
-    vb.customize ['modifyvm', :id, '--usb', 'on']
+    if settings['vm']['usb']
+      vb.customize ['modifyvm', :id, '--usb', 'on']
+    end
 
     # Get disk path
     line = `VBoxManage list systemproperties | grep "Default machine folder"`

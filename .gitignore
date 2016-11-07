@@ -1,4 +1,8 @@
+*.pyc
+fabfile/deploy.py
+
 .vagrant
 vagrant/settings.yml
 
-meta-xbterminal/recipes-xbterminal/xbterminal/files/*.tar.gz
+build
+meta-xbterminal/recipes-xbterminal/xbterminal/files/*
