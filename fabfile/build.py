@@ -1,4 +1,6 @@
-from fabric.api import task, local, run, cd, get, settings, shell_env, prefix
+import datetime
+
+from fabric.api import task, local, run, lcd, cd, get, settings, shell_env, prefix
 
 
 @task(default=True)
@@ -28,10 +30,23 @@ def image(machine='imx6ulevk-itl',
         with prefix('. poky/oe-init-build-env'), shell_env(**bb_vars):
             run('bitbake {image}'.format(image=image))
         # Download image
-        with cd('build/tmp/deploy/images/{machine}'.format(machine=machine)):
-            local('mkdir -p build')
-            get('{image}-{machine}.sdcard.gz'.format(image=image, machine=machine),
-                'build/')
+        local('mkdir -p build')
+        remote_image_dir = 'build/tmp/deploy/images/{machine}'.format(
+            machine=machine)
+        with lcd('build'), cd(remote_image_dir):
+            image_file_name = '{image}-{machine}.sdcard.gz'.format(
+                image=image,
+                machine=machine)
+            image_ts_file_name = '{image}-{machine}-{ts:%Y%m%d%H%M}.sdcard.gz'.format(
+                image=image,
+                machine=machine,
+                ts=datetime.datetime.now())
+            get(image_file_name, image_ts_file_name)
+            local('rm -f {link_name}'.format(
+                link_name=image_file_name))
+            local('ln -s {file_name} {link_name}'.format(
+                file_name=image_ts_file_name,
+                link_name=image_file_name))
 
 
 @task
