@@ -21,13 +21,11 @@ inherit allarch
 S = "${WORKDIR}"
 
 do_install () {
-	install -d  ${D}${prefix}/local/share/ca-certificates/xbthq/
-	install -m 0644 ${WORKDIR}/xbthq-dev.crt ${D}${prefix}/local/share/ca-certificates/xbthq/
-#for syslog-ng
-#https://www.balabit.com/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/procedure-configuring-tls-client.html
-  install -m 0644 ${WORKDIR}/xbthq-dev.crt ${D}${prefix}/local/share/ca-certificates/xbthq/af9743b5.0
-
-
+    install -d  ${D}${prefix}/local/share/ca-certificates/xbthq/
+    install -m 0644 ${WORKDIR}/xbthq-dev.crt ${D}${prefix}/local/share/ca-certificates/xbthq/
+    #for syslog-ng
+    #https://www.balabit.com/documents/syslog-ng-ose-3.5-guides/en/syslog-ng-ose-guide-admin/html/procedure-configuring-tls-client.html
+    install -m 0644 ${WORKDIR}/xbthq-dev.crt ${D}${prefix}/local/share/ca-certificates/xbthq/af9743b5.0
 }
 
 FILES_${PN} += "${prefix}/local/share/ca-certificates/xbthq/xbthq-dev.crt ${prefix}/local/share/ca-certificates ${prefix}/local/share/ca-certificates/xbthq ${prefix}/local/share ${prefix}/local"
