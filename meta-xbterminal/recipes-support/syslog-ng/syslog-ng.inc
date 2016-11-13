@@ -101,6 +101,7 @@ RREPLACES_${PN} += "${PN}-systemd"
 RCONFLICTS_${PN} += "${PN}-systemd"
 SYSTEMD_SERVICE_${PN} = "${BPN}.service"
 
+RDEPENDS_${PN} += "xbthq-certificates"
 # no syslog-init for systemd
 python () {
     if bb.utils.contains('DISTRO_FEATURES', 'sysvinit', True, False, d):
