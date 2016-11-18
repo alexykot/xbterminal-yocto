@@ -1,0 +1,113 @@
+diff --git a/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c b/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c
+index 85f5ce3..0fdac61 100644
+--- a/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c
++++ b/board/innovativetechnology/mx6ul_itl_apm/mx6ul_itl_apm.c
+@@ -108,7 +108,8 @@ struct i2c_pads_info i2c_pad_info3 = {
+ };
+ 
+ #ifdef CONFIG_POWER
+-#define I2C_PMIC	3
++/* #define I2C_PMIC	3 */
++#define I2C_PMIC	0
+ static struct pmic *pfuze;
+ int power_init_board(void)
+ {
+@@ -509,7 +510,7 @@ int board_phy_config(struct phy_device *phydev)
+ static void pcf8754_init(void)
+ {
+ /* Setup the GPIO expander */
+-	if (gpio_exp_setup_port(1, 3, PCF8754A_I2C) == 0)
++	if (gpio_exp_setup_port(1, 1, PCF8754A_I2C) == 0)
+ 	{
+ 		uint8_t gpio_exp;
+ 		/* Turn on the LED */
+@@ -548,7 +549,8 @@ int board_init(void)
+ 	imx_iomux_v3_setup_multiple_pads(iox_pads, ARRAY_SIZE(iox_pads));
+ 
+ #ifdef CONFIG_SYS_I2C_MXC
+-	setup_i2c(3, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info3);
++	/* setup_i2c(3, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info3); */
++	setup_i2c(0, CONFIG_SYS_I2C_SPEED, 0x7f, &i2c_pad_info3);
+ #endif
+ 
+ 	pcf8754_init( );
+@@ -587,7 +589,7 @@ int board_late_init(void)
+ #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
+ 	setenv("board_name", "ITL APM");
+ 
+-	setenv("board_rev", "1.0");
++	setenv("board_rev", "1.1");
+ #endif
+ 
+ 	return 0;
+@@ -595,7 +597,7 @@ int board_late_init(void)
+ 
+ int checkboard(void)
+ {
+-	puts("Board: MX6UL 1.0 ITL APM\n");
++	puts("Board: MX6UL 1.1 ITL APM\n");
+ 
+ 	return 0;
+ }
+@@ -607,35 +609,35 @@ int checkboard(void)
+ 
+ 
+ static struct mx6ul_iomux_grp_regs mx6_grp_ioregs = {
+-	.grp_addds = 0x00000030,
++	.grp_addds = 0x00000020,
+ 	.grp_ddrmode_ctl = 0x00020000,
+-	.grp_b0ds = 0x00000030,
+-	.grp_ctlds = 0x00000030,
+-	.grp_b1ds = 0x00000030,
++	.grp_b0ds = 0x00000028,
++	.grp_ctlds = 0x00000020,
++	.grp_b1ds = 0x00000028,
+ 	.grp_ddrpke = 0x00000000,
+ 	.grp_ddrmode = 0x00020000,
+ 	.grp_ddr_type = 0x000c0000,
+ };
+ 
+ static struct mx6ul_iomux_ddr_regs mx6_ddr_ioregs = {
+-	.dram_dqm0 = 0x00000030,
+-	.dram_dqm1 = 0x00000030,
+-	.dram_ras = 0x00000030,
+-	.dram_cas = 0x00000030,
+-	.dram_odt0 = 0x00000030,
+-	.dram_odt1 = 0x00000030,
++	.dram_dqm0 = 0x00000028,
++	.dram_dqm1 = 0x00000028,
++	.dram_ras = 0x00000020,
++	.dram_cas = 0x00000020,
++	.dram_odt0 = 0x00000020,
++	.dram_odt1 = 0x00000020,
+ 	.dram_sdba2 = 0x00000000,
+-	.dram_sdclk_0 = 0x00000008,
+-	.dram_sdqs0 = 0x00000038,
+-	.dram_sdqs1 = 0x00000030,
+-	.dram_reset = 0x00000030,
++	.dram_sdclk_0 = 0x00000028,
++	.dram_sdqs0 = 0x00000028,
++	.dram_sdqs1 = 0x00000028,
++	.dram_reset = 0x00000020,
+ };
+ 
+ static struct mx6_mmdc_calibration mx6_mmcd_calib = {
+ 	.p0_mpwldectrl0 = 0x00070007,
+-	.p0_mpdgctrl0 = 0x41490145,
+-	.p0_mprddlctl = 0x40404546,
+-	.p0_mpwrdlctl = 0x4040524D,
++	.p0_mpdgctrl0 = 0x0154014c,
++	.p0_mprddlctl = 0x40404446,
++	.p0_mpwrdlctl = 0x40405452,
+ };
+ 
+ struct mx6_ddr_sysinfo ddr_sysinfo = {
+@@ -659,7 +661,7 @@ static struct mx6_ddr3_cfg mem_ddr = {
+ 	.density = 4,
+ 	.width = 16,
+ 	.banks = 8,
+-	.rowaddr = 13,
++	.rowaddr = 15,
+ 	.coladdr = 10,
+ 	.pagesz = 2,
+ 	.trcd = 1375,
