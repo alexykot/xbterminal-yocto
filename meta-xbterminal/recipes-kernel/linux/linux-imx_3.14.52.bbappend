@@ -8,6 +8,7 @@ SRC_URI_imx6ulevk-itl = "\
     git://git.freescale.com/imx/linux-2.6-imx.git;branch=${SRCBRANCH} \
     file://0001_itl_apm_kernel.patch \
     file://0002_itl_apm_kernel.patch \
+    file://0003_itl_apm_kernel.patch \
     "
 
 do_configure_prepend_imx6ulevk-itl() {
