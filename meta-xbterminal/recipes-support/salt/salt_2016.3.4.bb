@@ -18,7 +18,7 @@ SRC_URI[sha256sum] = "5d4c822719d7fb2d79b0103cd9b015d251300890f8aa174e16b73fcfd6
 RDEPENDS_${PN}-minion = "python  ${PN}-common (= ${EXTENDPKGV}) python-pycrypto python-msgpack python-pyzmq (>= 13.1.0) procps python-apt"
 FILES_${PN}-minion = "${bindir}/${PN}-minion ${sysconfdir}/${PN}/minion.d/ ${CONFFILES_${PN}-minion} ${bindir}/${PN}-proxy"
 
-RDEPENDS_${PN}-common = "python python-dateutil python-jinja2 python-pyyaml python-requests (>= 1.0.0) python-tornado (>= 4.2.1)"
+RDEPENDS_${PN}-common = "python python-dateutil python-jinja2 python-pyyaml python-requests (>= 1.0.0) python-tornado (>= 4.2.1) python-futures"
 
 RDEPENDS_${PN}-ssh = "python  ${PN}-common (= ${EXTENDPKGV}) python-msgpack"
 
