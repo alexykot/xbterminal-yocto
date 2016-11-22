@@ -7,7 +7,14 @@ import build
 
 @task(default=True)
 @hosts('blobs.xbthq.co.uk')
-def image():
+def image(prod='no'):
+    """
+    Usage:
+        fab build_itl
+            - build dev image
+        fab build_itl:prod=yes
+            - build production image
+    """
     jenkins_build_dir = '/itl/xbterminal-firmware/build/'
     src_dir = 'meta-xbterminal/recipes-xbterminal/xbterminal/files/'
     local('mkdir -p {}'.format(src_dir))
@@ -20,7 +27,7 @@ def image():
             src_dir)
     # Build image
     build.image(machine='imx6ulevk-itl',
-                image='core-image-xbt',
+                image='core-image-xbt' if prod == 'yes' else 'core-image-xbt-dev',
                 xbt_pkgv=xbt_pkgv,
                 xbt_pv=xbt_pv)
     # Shutdown VM
