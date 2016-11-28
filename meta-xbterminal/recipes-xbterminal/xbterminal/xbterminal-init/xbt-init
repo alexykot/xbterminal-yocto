@@ -30,6 +30,10 @@ then
         # Use dev server; don't run firmware
         echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/rpc_config
         echo "environment: stage" > /etc/salt/minion.d/env.conf
+        rm /etc/salt/minion.d/master.conf
+        echo "master: stage-sam.xbthq.co.uk" >> /etc/salt/minion.d/master.conf
+        echo "master_finger: 5e:71:6b:f2:8a:38:0a:6e:2b:b7:06:26:54:51:1b:9c" >> /etc/salt/minion.d/master.conf
+        echo "transport: tcp" >> /etc/salt/minion.d/master.conf
     fi
 
     #initiate hosts file
