@@ -27,8 +27,9 @@ then
 
     if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
     then
-        # Use dev server; don't run firmware
+        # Use stage server, enable debug mode
         echo -e "{\n    \"remote_server\": \"stage\"\n}" > /srv/xbterminal/xbterminal/runtime/rpc_config
+        echo -e "{\n    \"debug\": true\n}" > /srv/xbterminal/xbterminal/runtime/gui_config
         echo "environment: stage" > /etc/salt/minion.d/env.conf
     fi
 
