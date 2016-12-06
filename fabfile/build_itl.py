@@ -22,7 +22,7 @@ def image(prod='no'):
     with cd(jenkins_build_dir):
         get('PACKAGE_VERSION', 'build/PACKAGE_VERSION')
         xbt_pkgv = local('cat build/PACKAGE_VERSION', capture=True).strip()
-        xbt_pv = re.match(r'^(\d\.\d\.\d).*', xbt_pkgv).group(1)
+        xbt_pv = re.sub(r'^(\d+\.\d+).*', r'\1.%', xbt_pkgv)
         get('xbterminal-firmware_{}_armhf.tar.gz'.format(xbt_pkgv),
             src_dir)
     # Build image
