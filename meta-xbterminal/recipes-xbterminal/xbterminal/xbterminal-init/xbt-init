@@ -4,7 +4,7 @@
 
 set -e
 
-if [[ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]]
+if [[ ! -e /srv/xbterminal/xbterminal/runtime/device_key ]]
 then
     if [[ "$XBT_INIT_PRODUCTION_MODE" = true ]]
     then
@@ -21,7 +21,6 @@ then
 
     # Generate device key and write minion id
     DEVICE_KEY=`cat /etc/machine-id | sha256sum | cut -d " " -f 1`
-    echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
     echo $DEVICE_KEY > /etc/salt/minion_id
     echo "New device key ${DEVICE_KEY}"
 
@@ -38,12 +37,12 @@ then
     fi
 
     #initiate hosts file
-    echo "127.0.0.1	localhost.localdomain		localhost" > /etc/hosts
+    echo "127.0.0.1 localhost.localdomain localhost" > /etc/hosts
     #set hostname
-    echo "127.0.1.1 ${DEVICE_KEY}.int   ${DEVICE_KEY}" >> /etc/hosts
+    echo "127.0.1.1 ${DEVICE_KEY}.int ${DEVICE_KEY}" >> /etc/hosts
     /usr/bin/hostnamectl set-hostname "${DEVICE_KEY}.int"
 
-    # Restart Syslog-ng, journald
+    # Restart Syslog-ng, journald (activates post-init logging mode)
     systemctl restart syslog-ng.service
     systemctl restart systemd-journald.service
 
@@ -58,6 +57,8 @@ then
         echo "Touchscreen calibration done"
     fi
 
+    # Finish initialization
+    echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
     echo "Device successfully initialized"
 else
     echo "Device already initialized, exiting"
