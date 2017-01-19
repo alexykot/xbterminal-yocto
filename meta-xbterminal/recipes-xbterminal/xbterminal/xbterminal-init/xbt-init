@@ -3,6 +3,7 @@
 # Usage: xbt-init [batch_number]
 
 set -e
+set -x
 
 if [[ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]]
 then
