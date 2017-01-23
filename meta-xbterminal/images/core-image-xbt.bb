@@ -3,7 +3,7 @@ LICENSE = "MIT"
 
 inherit core-image
 
-IMAGE_FEATURES += "splash package-management"
+IMAGE_FEATURES += "splash package-management ssh-server-openssh"
 
 IMAGE_INSTALL += "\
     packagegroup-core-x11-xserver \
