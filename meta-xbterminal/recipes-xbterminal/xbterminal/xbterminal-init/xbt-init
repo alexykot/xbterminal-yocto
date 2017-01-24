@@ -23,6 +23,9 @@ then
     DEVICE_KEY=`cat /etc/machine-id | sha256sum | cut -d " " -f 1`
     echo "New device key ${DEVICE_KEY}"
 
+    # Salt minion needs to be stopped before setting hostname
+    systemctl stop salt-minion
+
     # Initiate hosts file
     echo "127.0.0.1 localhost.localdomain localhost" > /etc/hosts
     # Set hostname
@@ -30,7 +33,7 @@ then
     /usr/bin/hostnamectl set-hostname "${DEVICE_KEY}.int"
 
     # Restart Syslog-ng (activates post-init logging mode)
-    systemctl restart syslog-ng.service
+    systemctl restart syslog-ng
 
     # Configure salt minion
     echo $DEVICE_KEY > /etc/salt/minion_id
@@ -47,7 +50,7 @@ then
         echo "transport: tcp" >> /etc/salt/minion.d/master.conf
     fi
 
-    systemctl restart salt-minion
+    systemctl start salt-minion
 
     # Run touchscreen calibrator if present
     if [[ -e /usr/bin/xinput_calibrator_once.sh ]]
