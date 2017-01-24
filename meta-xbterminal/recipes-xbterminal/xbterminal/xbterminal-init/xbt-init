@@ -3,9 +3,8 @@
 # Usage: xbt-init [batch_number]
 
 set -e
-set -x
 
-if [[ ! -e /srv/xbterminal/xbterminal/runtime/batch_number ]]
+if [[ ! -e /srv/xbterminal/xbterminal/runtime/device_key ]]
 then
     if [[ "$XBT_INIT_PRODUCTION_MODE" = true ]]
     then
@@ -20,11 +19,21 @@ then
     echo $BATCH_NUMBER > /srv/xbterminal/xbterminal/runtime/batch_number
     echo "Batch number ${BATCH_NUMBER}"
 
-    # Generate device key and write minion id
+    # Generate device key
     DEVICE_KEY=`cat /etc/machine-id | sha256sum | cut -d " " -f 1`
-    echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
-    echo $DEVICE_KEY > /etc/salt/minion_id
     echo "New device key ${DEVICE_KEY}"
+
+    # Initiate hosts file
+    echo "127.0.0.1 localhost.localdomain localhost" > /etc/hosts
+    # Set hostname
+    echo "127.0.1.1 ${DEVICE_KEY}.int ${DEVICE_KEY}" >> /etc/hosts
+    /usr/bin/hostnamectl set-hostname "${DEVICE_KEY}.int"
+
+    # Restart Syslog-ng (activates post-init logging mode)
+    systemctl restart syslog-ng.service
+
+    # Configure salt minion
+    echo $DEVICE_KEY > /etc/salt/minion_id
 
     if [[ "$BATCH_NUMBER" = "00000000000000000000000000000000" ]]
     then
@@ -38,17 +47,6 @@ then
         echo "transport: tcp" >> /etc/salt/minion.d/master.conf
     fi
 
-    #initiate hosts file
-    echo "127.0.0.1	localhost.localdomain		localhost" > /etc/hosts
-    #set hostname
-    echo "127.0.1.1 ${DEVICE_KEY}.int   ${DEVICE_KEY}" >> /etc/hosts
-    /usr/bin/hostnamectl set-hostname "${DEVICE_KEY}.int"
-
-    # Restart Syslog-ng, journald
-    systemctl restart syslog-ng.service
-    systemctl restart systemd-journald.service
-
-    # Restart salt-minion
     systemctl restart salt-minion
 
     # Run touchscreen calibrator if present
@@ -59,6 +57,8 @@ then
         echo "Touchscreen calibration done"
     fi
 
+    # Finish initialization
+    echo $DEVICE_KEY > /srv/xbterminal/xbterminal/runtime/device_key
     echo "Device successfully initialized"
 else
     echo "Device already initialized, exiting"
