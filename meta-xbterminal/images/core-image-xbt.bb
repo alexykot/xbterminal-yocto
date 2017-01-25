@@ -18,11 +18,6 @@ IMAGE_INSTALL += "\
     salt-minion \
     salt-common \
     syslog-ng \
-    gst1.0-fsl-plugin \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good \
-    gstreamer1.0-plugins-bad \
-    gstreamer1.0-plugins-imx \
     xbterminal-gui \
     "
 
