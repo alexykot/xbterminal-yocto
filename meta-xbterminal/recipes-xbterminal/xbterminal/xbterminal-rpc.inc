@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3e8d19d5cef2e63c0791389e1e3496c4"
 
 require xbterminal.inc
 
-INC_PR = "r1"
+INC_PR = "r2"
 
 SRC_URI_append = " file://xbterminal-rpc.service "
 
@@ -23,6 +23,10 @@ RDEPENDS_${PN} += "\
     python-tornado \
     zbar \
     fswebcam \
+    gst1.0-fsl-plugin \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
     python-itl-bsp \
     xbterminal-init \
     "
