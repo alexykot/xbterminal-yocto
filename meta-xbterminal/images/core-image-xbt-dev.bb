@@ -7,6 +7,7 @@ IMAGE_FEATURES += "ssh-server-openssh"
 IMAGE_INSTALL_append = "\
     util-linux \
     usbutils \
+    v4l-utils \
     curl \
     openssh-sftp-server \
     git \
