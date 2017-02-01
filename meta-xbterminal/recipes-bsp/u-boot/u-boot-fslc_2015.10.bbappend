@@ -7,4 +7,7 @@ SRC_URI_append_wandboard = " file://fix_config_wandboard_mmcargs.patch "
 SRC_URI_append_imx6ulevk-itl = "\
     file://0001_itl_apm_u-boot.patch \
     file://0002_itl_apm_u-boot.patch \
-    file://0003_itl_apm_u-boot.patch"
+    file://0003_itl_apm_u-boot.patch \
+    file://0004_itl_apm_u-boot.patch \
+    file://0005_itl_apm_u-boot.patch \
+"
