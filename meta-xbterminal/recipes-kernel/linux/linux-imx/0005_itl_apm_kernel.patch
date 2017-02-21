@@ -1,0 +1,19 @@
+diff --git a/arch/arm/boot/dts/imx6ul-itl-apm.dts b/arch/arm/boot/dts/imx6ul-itl-apm.dts
+index b44edf2..957cf48 100644
+--- a/arch/arm/boot/dts/imx6ul-itl-apm.dts
++++ b/arch/arm/boot/dts/imx6ul-itl-apm.dts
+@@ -23,14 +23,6 @@
+ 		reg = <0x80000000 0x20000000>;
+ 	};
+ 
+-	buzzer {
+-		compatible = "pwm-buzzer";
+-		pwms = <&pwm1 0 5000000>;
+-		buzzer-levels = <0 4 8 16 32 64 128 255>;
+-		default-buzzer-level = <0>;
+-		status = "okay";
+-	};
+-
+ 	backlight {
+ 		compatible = "pwm-backlight";
+ 		pwms = <&pwm2 0 2000000>;

@@ -22,11 +22,12 @@ extern "C" {
 //=============================================================================
 // Function Definitions
 //=============================================================================
+int16_t ITL_BSP_GetHWVersion(uint8_t *major, uint8_t *minor, uint8_t *modstate);
 int16_t ITL_BSP_GetLibVersion(uint8_t *major, uint8_t *minor, uint8_t *build);
 int16_t ITL_BSP_Init_Paysys(void);
 
 int16_t ITL_BSP_BuzzerEnable(void);
-int16_t ITL_BSP_PlayTone(uint8_t tone, uint16_t duration);
+int16_t ITL_BSP_PlayTone(uint16_t freqHz, uint16_t duration);
 
 int16_t ITL_BSP_APMGetStatus(uint8_t *status);
 int16_t ITL_BSP_APMSetStatus(uint8_t status);
