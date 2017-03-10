@@ -15,6 +15,8 @@ IMAGE_INSTALL_append = "\
     nano \
     htop \
     mc \
+    tcpdump \
+    iftop \
     "
 
 # Disable xbterminal services for dev image
