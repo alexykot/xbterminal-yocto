@@ -1,0 +1,51 @@
+diff --git a/drivers/gpio/pcf8754_ioexp.c b/drivers/gpio/pcf8754_ioexp.c
+index 5fdbc13..f69ba10 100644
+--- a/drivers/gpio/pcf8754_ioexp.c
++++ b/drivers/gpio/pcf8754_ioexp.c
+@@ -36,8 +36,6 @@ static int pcf8754_gpio_set_value(unsigned gpio, int value)
+ 	unsigned char reg_val;
+ 	unsigned char chip;
+ 
+-	printf("pcf8754_gpio_set_value Bus %d Addr %.2x Value %.2x\n", pcf8754_configs[dev].i2c_bus_id, pcf8754_configs[dev].i2c_slave_addr, value);
+-	printf("dev %d pin %d\n", dev, pin);
+ 	if (dev >= CONFIG_IOEXP_DEVICES_NUM)
+ 		return -EPERM;
+ 
+@@ -48,15 +46,12 @@ static int pcf8754_gpio_set_value(unsigned gpio, int value)
+ 		return -ENXIO;
+ 
+ 	i2c_read(chip, 0, 0, &reg_val, 1);
+-	printf("read %x\n", reg_val);
+-	
++
+ 	if (value)
+ 		reg_val |= 1 << pin;
+ 	else
+ 		reg_val &= ~(1 << pin);
+ 
+-	printf("writing %x\n", reg_val);
+-	
+ 	i2c_write(chip, 0, 0, &reg_val, 1);
+ 
+ 	return 0;
+@@ -99,18 +94,15 @@ int gpio_exp_setup_port(int port, int i2c_bus_id, int i2c_slave_addr)
+ {
+ 	if (port > CONFIG_IOEXP_DEVICES_NUM || port <= 0)
+ 		return -EPERM;
+-		
+-	printf("gpio_exp_setup_port(%d, %d, %x)\n",port, i2c_bus_id, i2c_slave_addr);
+ 
+ 	i2c_set_bus_num(i2c_bus_id);
+ 	if (i2c_probe(i2c_slave_addr))
+ 	{
+-		printf("Chip not found\n");
+ 		return -ENXIO;
+ 	}
+-	
++
+ 	pcf8754_configs[port-1].i2c_bus_id = i2c_bus_id;
+ 	pcf8754_configs[port-1].i2c_slave_addr = i2c_slave_addr;
+-	
++
+ 	return 0;
+ }

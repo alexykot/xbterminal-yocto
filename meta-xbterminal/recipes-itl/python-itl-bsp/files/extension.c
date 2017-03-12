@@ -4,13 +4,38 @@
 #include <itl/ITL_BSP_lib.h>
 #include <itl/ITL_BSP_Error.h>
 
+static PyObject *get_hw_version(PyObject *self) {
+    uint8_t major;
+    uint8_t minor;
+    uint8_t modstate;
+    ITL_BSP_GetHWVersion(&major, &minor, &modstate);
+    PyObject *version = PyTuple_New(3);
+    PyTuple_SetItem(version, 0, Py_BuildValue("i", major));
+    PyTuple_SetItem(version, 1, Py_BuildValue("i", minor));
+    PyTuple_SetItem(version, 2, Py_BuildValue("i", modstate));
+    return version;
+
+}
+
+static PyObject *get_lib_version(PyObject *self) {
+    uint8_t major;
+    uint8_t minor;
+    uint8_t build;
+    ITL_BSP_GetLibVersion(&major, &minor, &build);
+    PyObject *version = PyTuple_New(3);
+    PyTuple_SetItem(version, 0, Py_BuildValue("i", major));
+    PyTuple_SetItem(version, 1, Py_BuildValue("i", minor));
+    PyTuple_SetItem(version, 2, Py_BuildValue("i", build));
+    return version;
+}
+
 static PyObject *initialize(PyObject *self) {
     ITL_BSP_Init_Paysys();
     Py_RETURN_NONE;
 }
 
 static PyObject *add_credit(PyObject *self, PyObject *args) {
-    int amount;
+    uint32_t amount;
     if (!PyArg_ParseTuple(args, "i", &amount)) {
         return NULL;
     }
@@ -19,7 +44,7 @@ static PyObject *add_credit(PyObject *self, PyObject *args) {
 }
 
 static PyObject *get_payout_status(PyObject *self) {
-    int status;
+    uint16_t status;
     status = ITL_BSP_GetPayoutStatus();
     return Py_BuildValue("i", status);
 }
@@ -31,7 +56,7 @@ static PyObject *get_payout(PyObject *self) {
 }
 
 static PyObject *pay_cash(PyObject *self, PyObject *args) {
-    int amount;
+    uint16_t amount;
     if (!PyArg_ParseTuple(args, "i", &amount)) {
         return NULL;
     }
@@ -46,7 +71,7 @@ static PyObject *get_apm_status(PyObject *self) {
 }
 
 static PyObject *set_apm_status(PyObject *self, PyObject *args) {
-    int status;
+    uint8_t status;
     if (!PyArg_ParseTuple(args, "i", &status)) {
         return NULL;
     }
@@ -69,6 +94,10 @@ static PyObject *erase_ndef(PyObject *self) {
 }
 
 static PyMethodDef functions[] = {
+    {"get_hw_version", (PyCFunction) get_hw_version,
+     METH_NOARGS, "Get version information of the physical hardware."},
+    {"get_lib_version", (PyCFunction) get_lib_version,
+     METH_NOARGS, "Get version information of the BSP library."},
     {"initialize", (PyCFunction) initialize,
      METH_NOARGS, "Perform initialization."},
     {"add_credit", (PyCFunction) add_credit,

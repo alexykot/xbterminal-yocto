@@ -19,14 +19,30 @@ extern "C" {
 #define CASH	1
 #define BITCOIN	2
 
+// Display & Backlight
+#define DISPLAY_ON 1
+#define DISPLAY_OFF 0
+
+enum
+{
+	BACKLIGHT_OFF,
+	BACKLIGHT_LEVEL1,
+	BACKLIGHT_LEVEL2,
+	BACKLIGHT_LEVEL3,
+	BACKLIGHT_LEVEL4,
+	BACKLIGHT_LEVEL5,
+	BACKLIGHT_LEVEL6,
+	BACKLIGHT_LEVELMAX
+};
+
 //=============================================================================
 // Function Definitions
 //=============================================================================
+int16_t ITL_BSP_GetHWVersion(uint8_t *major, uint8_t *minor, uint8_t *modstate);
 int16_t ITL_BSP_GetLibVersion(uint8_t *major, uint8_t *minor, uint8_t *build);
 int16_t ITL_BSP_Init_Paysys(void);
 
-int16_t ITL_BSP_BuzzerEnable(void);
-int16_t ITL_BSP_PlayTone(uint8_t tone, uint16_t duration);
+int16_t ITL_BSP_PlayTone(uint16_t freqHz, uint16_t duration);
 
 int16_t ITL_BSP_APMGetStatus(uint8_t *status);
 int16_t ITL_BSP_APMSetStatus(uint8_t status);
@@ -44,7 +60,8 @@ int16_t ITL_BSP_SetLED(uint8_t);
 int16_t ITL_BSP_STM32_RST(uint8_t);
 int16_t ITL_BSP_STM32_BSL(uint8_t);
 int16_t ITL_BSP_BL_EN(uint8_t);
-int16_t ITL_BSP_DISP_ON(uint8_t);
+int16_t ITL_BSP_Display_Enable(uint8_t);
+int16_t ITL_BSP_Backlight_Level(uint8_t);
 int16_t ITL_BSP_SD1_OC(void);
 int16_t ITL_BSP_ENET_RST(uint8_t);
 
