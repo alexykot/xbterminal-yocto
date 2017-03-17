@@ -8,6 +8,8 @@ vagrant ssh
 source poky/oe-init-build-env
 ```
 
+Build environment could be updated later using `vagrant provision` command.
+
 ## Build image
 
 There are two images:
@@ -21,8 +23,6 @@ Built images can also be found at https://repo.xbthq.co.uk:8080/
 
 Put the xbterminal-firmware installation packages into directory `meta-xbterminal/recipes-xbterminal/xbterminal-firmware/files`.
 
-Edit `conf/local.conf` and choose a build target (**qemuarm**, **wandboard** or **imx6ulevk**).
-
 Then build an image:
 
 ```
@@ -31,17 +31,10 @@ bitbake core-image-xbt-dev
 
 ### Boot
 
-To boot a **qemuarm** image:
+Write a **imx6ulevk-itl** image to SD card:
 
 ```
-xinit
-runqemu qemuarm
-```
-
-To write a **wandboard** or **imx6ulevk** image to SD card:
-
-```
-sudo dd if=core-image-xbt-dev-wandboard.sdcard of=/dev/mmcblk0 bs=1M
+sudo dd if=core-image-xbt-dev-imx6ulevk-itl.sdcard of=/dev/mmcblk0 bs=1M
 ```
 
 ### Login
