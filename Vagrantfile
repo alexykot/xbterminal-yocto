@@ -46,5 +46,12 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", path: "vagrant/add_disk.sh"
-  config.vm.provision "shell", path: "vagrant/provision.sh"
+
+  config.vm.synced_folder "vagrant/salt/states/", "/srv/salt/"
+  config.vm.provision :salt do |salt|
+    salt.masterless = true
+    salt.minion_config = "vagrant/salt/minion.conf"
+    salt.run_highstate = true
+    salt.verbose = true
+  end
 end

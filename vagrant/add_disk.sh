@@ -2,6 +2,11 @@
 
 set -e
 
+if grep '/home' /etc/fstab > /dev/null 2>&1
+then
+    exit 0
+fi
+
 fdisk -u /dev/sdb <<EOF
 n
 p
