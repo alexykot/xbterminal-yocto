@@ -93,6 +93,16 @@ static PyObject *erase_ndef(PyObject *self) {
     Py_RETURN_NONE;
 }
 
+static PyObject *enable_display(PyObject *self) {
+    ITL_BSP_Display_Enable(0);
+    Py_RETURN_NONE;
+}
+
+static PyObject *disable_display(PyObject *self) {
+    ITL_BSP_Display_Enable(1);
+    Py_RETURN_NONE;
+}
+
 static PyMethodDef functions[] = {
     {"get_hw_version", (PyCFunction) get_hw_version,
      METH_NOARGS, "Get version information of the physical hardware."},
@@ -116,6 +126,10 @@ static PyMethodDef functions[] = {
      METH_VARARGS, "Write NDEF message."},
     {"erase_ndef", (PyCFunction) erase_ndef,
      METH_NOARGS, "Erase NDEF message."},
+    {"enable_display", (PyCFunction) enable_display,
+     METH_NOARGS, "Enable display."},
+    {"disable_display", (PyCFunction) disable_display,
+     METH_NOARGS, "Disable display."},
     {NULL, NULL, 0, NULL}
 };
 
