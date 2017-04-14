@@ -14,4 +14,4 @@ do_configure_prepend_imx6ulevk-itl() {
     cp ${S}/arch/arm/configs/imx_v7_defconfig ${WORKDIR}/defconfig
 }
 
-MIRRORS += "git://git.freescale.com/imx/linux-2.6-imx.git git://repo.xbthq.co.uk/mirrors/linux-2.6-imx.git \n"
+MIRRORS += "git://git.freescale.com/imx/linux-2.6-imx.git http://repo.xbthq.co.uk/mirrors/linux-2.6-imx.git \n"
