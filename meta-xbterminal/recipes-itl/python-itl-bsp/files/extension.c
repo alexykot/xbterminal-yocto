@@ -94,12 +94,21 @@ static PyObject *erase_ndef(PyObject *self) {
 }
 
 static PyObject *enable_display(PyObject *self) {
-    ITL_BSP_Display_Enable(0);
+    ITL_BSP_Display_Enable(1);
     Py_RETURN_NONE;
 }
 
 static PyObject *disable_display(PyObject *self) {
-    ITL_BSP_Display_Enable(1);
+    ITL_BSP_Display_Enable(0);
+    Py_RETURN_NONE;
+}
+
+static PyObject *set_backlight_level(PyObject *self, PyObject *args) {
+    uint8_t level;
+    if (!PyArg_ParseTuple(args, "i", &level)) {
+        return NULL;
+    }
+    ITL_BSP_Backlight_Level(level);
     Py_RETURN_NONE;
 }
 
@@ -130,9 +139,22 @@ static PyMethodDef functions[] = {
      METH_NOARGS, "Enable display."},
     {"disable_display", (PyCFunction) disable_display,
      METH_NOARGS, "Disable display."},
+    {"set_backlight_level", (PyCFunction) set_backlight_level,
+     METH_VARARGS, "Set backlight level."},
     {NULL, NULL, 0, NULL}
 };
 
 PyMODINIT_FUNC inititl_bsp(void) {
-    (void) Py_InitModule("itl_bsp", functions);
+    PyObject *module;
+    module = Py_InitModule("itl_bsp", functions);
+    PyModule_AddIntConstant(module, "OK", ITL_BSP_OK);
+    PyModule_AddIntConstant(module, "FAIL", ITL_BSP_FAIL);
+    PyModule_AddIntConstant(module, "PAYOUT_IDLE", ITL_BSP_PAYOUT_IDLE);
+    PyModule_AddIntConstant(module, "PAYOUT_PENDING", ITL_BSP_PAYOUT_PENDING);
+    PyModule_AddIntConstant(module, "PAYOUT_COMPLETE", ITL_BSP_PAYOUT_COMPLETE);
+    PyModule_AddIntConstant(module, "APM_IDLE", ITL_BSP_APM_IDLE);
+    PyModule_AddIntConstant(module, "APM_ACTIVE", ITL_BSP_APM_ACTIVE);
+    PyModule_AddIntConstant(module, "APM_OUTOFSERVICE", ITL_BSP_APM_OUTOFSERVICE);
+    PyModule_AddIntConstant(module, "BACKLIGHT_OFF", BACKLIGHT_OFF);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVELMAX", BACKLIGHT_LEVELMAX);
 }
