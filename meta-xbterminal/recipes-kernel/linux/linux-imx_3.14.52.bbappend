@@ -1,6 +1,3 @@
-INHERIT += "own-mirrors"
-SOURCE_MIRROR_URL = "git://repo.xbthq.co.uk/mirrors/linux-2.6-imx.git"
-
 FILESEXTRAPATHS_append := ":${THISDIR}/linux-imx"
 
 # Apply custom patches from ITL
@@ -16,3 +13,5 @@ SRC_URI_imx6ulevk-itl = "\
 do_configure_prepend_imx6ulevk-itl() {
     cp ${S}/arch/arm/configs/imx_v7_defconfig ${WORKDIR}/defconfig
 }
+
+MIRRORS_prepend = " git://git.freescale.com/imx/linux-2.6-imx.git git://repo.xbthq.co.uk/mirrors/linux-2.6-imx.git;protocol=http \n"
