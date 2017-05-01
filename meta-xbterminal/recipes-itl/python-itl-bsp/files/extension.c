@@ -93,6 +93,25 @@ static PyObject *erase_ndef(PyObject *self) {
     Py_RETURN_NONE;
 }
 
+static PyObject *enable_display(PyObject *self) {
+    ITL_BSP_Display_Enable(1);
+    Py_RETURN_NONE;
+}
+
+static PyObject *disable_display(PyObject *self) {
+    ITL_BSP_Display_Enable(0);
+    Py_RETURN_NONE;
+}
+
+static PyObject *set_backlight_level(PyObject *self, PyObject *args) {
+    uint8_t level;
+    if (!PyArg_ParseTuple(args, "i", &level)) {
+        return NULL;
+    }
+    ITL_BSP_Backlight_Level(level);
+    Py_RETURN_NONE;
+}
+
 static PyMethodDef functions[] = {
     {"get_hw_version", (PyCFunction) get_hw_version,
      METH_NOARGS, "Get version information of the physical hardware."},
@@ -116,9 +135,26 @@ static PyMethodDef functions[] = {
      METH_VARARGS, "Write NDEF message."},
     {"erase_ndef", (PyCFunction) erase_ndef,
      METH_NOARGS, "Erase NDEF message."},
+    {"enable_display", (PyCFunction) enable_display,
+     METH_NOARGS, "Enable display."},
+    {"disable_display", (PyCFunction) disable_display,
+     METH_NOARGS, "Disable display."},
+    {"set_backlight_level", (PyCFunction) set_backlight_level,
+     METH_VARARGS, "Set backlight level."},
     {NULL, NULL, 0, NULL}
 };
 
 PyMODINIT_FUNC inititl_bsp(void) {
-    (void) Py_InitModule("itl_bsp", functions);
+    PyObject *module;
+    module = Py_InitModule("itl_bsp", functions);
+    PyModule_AddIntConstant(module, "OK", ITL_BSP_OK);
+    PyModule_AddIntConstant(module, "FAIL", ITL_BSP_FAIL);
+    PyModule_AddIntConstant(module, "PAYOUT_IDLE", ITL_BSP_PAYOUT_IDLE);
+    PyModule_AddIntConstant(module, "PAYOUT_PENDING", ITL_BSP_PAYOUT_PENDING);
+    PyModule_AddIntConstant(module, "PAYOUT_COMPLETE", ITL_BSP_PAYOUT_COMPLETE);
+    PyModule_AddIntConstant(module, "APM_IDLE", ITL_BSP_APM_IDLE);
+    PyModule_AddIntConstant(module, "APM_ACTIVE", ITL_BSP_APM_ACTIVE);
+    PyModule_AddIntConstant(module, "APM_OUTOFSERVICE", ITL_BSP_APM_OUTOFSERVICE);
+    PyModule_AddIntConstant(module, "BACKLIGHT_OFF", BACKLIGHT_OFF);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVELMAX", BACKLIGHT_LEVELMAX);
 }
