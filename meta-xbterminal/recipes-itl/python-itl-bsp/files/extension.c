@@ -156,5 +156,11 @@ PyMODINIT_FUNC inititl_bsp(void) {
     PyModule_AddIntConstant(module, "APM_ACTIVE", ITL_BSP_APM_ACTIVE);
     PyModule_AddIntConstant(module, "APM_OUTOFSERVICE", ITL_BSP_APM_OUTOFSERVICE);
     PyModule_AddIntConstant(module, "BACKLIGHT_OFF", BACKLIGHT_OFF);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL1", BACKLIGHT_LEVEL1);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL2", BACKLIGHT_LEVEL2);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL3", BACKLIGHT_LEVEL3);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL4", BACKLIGHT_LEVEL4);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL5", BACKLIGHT_LEVEL5);
+    PyModule_AddIntConstant(module, "BACKLIGHT_LEVEL6", BACKLIGHT_LEVEL6);
     PyModule_AddIntConstant(module, "BACKLIGHT_LEVELMAX", BACKLIGHT_LEVELMAX);
 }
