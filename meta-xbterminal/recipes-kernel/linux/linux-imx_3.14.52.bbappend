@@ -8,6 +8,7 @@ SRC_URI_imx6ulevk-itl = "\
     file://0003_itl_apm_kernel.patch \
     file://0004_itl_apm_kernel.patch \
     file://0005_itl_apm_kernel.patch \
+    file://0006_itl_apm_kernel.patch \
     "
 
 do_configure_prepend_imx6ulevk-itl() {
