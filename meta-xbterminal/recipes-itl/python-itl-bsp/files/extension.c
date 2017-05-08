@@ -112,6 +112,18 @@ static PyObject *set_backlight_level(PyObject *self, PyObject *args) {
     Py_RETURN_NONE;
 }
 
+static PyObject *play_tone(PyObject *self, PyObject *args) {
+    uint16_t freq;
+    uint16_t duration;
+    if (!PyArg_ParseTuple(args, "ii", &freq, &duration)) {
+        PyErr_SetString(PyExc_ValueError, "Invalid arguments");
+        return NULL;
+    }
+    uint16_t result;
+    result = ITL_BSP_PlayTone(freq, duration);
+    return Py_BuildValue("i", result);
+}
+
 static PyMethodDef functions[] = {
     {"get_hw_version", (PyCFunction) get_hw_version,
      METH_NOARGS, "Get version information of the physical hardware."},
@@ -141,6 +153,8 @@ static PyMethodDef functions[] = {
      METH_NOARGS, "Disable display."},
     {"set_backlight_level", (PyCFunction) set_backlight_level,
      METH_VARARGS, "Set backlight level."},
+    {"play_tone", (PyCFunction) play_tone,
+     METH_VARARGS, "Play tone."},
     {NULL, NULL, 0, NULL}
 };
 
