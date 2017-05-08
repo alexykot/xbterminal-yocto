@@ -55,6 +55,7 @@ int16_t ITL_BSP_GetPayoutStatus(void);
 int16_t ITL_BSP_GetPayout(uint16_t *payout);
 int16_t ITL_BSP_AddCredit(uint32_t credit);
 int16_t ITL_BSP_PayoutCash( uint16_t amount );
+int16_t ITL_BSP_CashPayoutStatus(uint16_t *remainingCredit, int8_t *state);
 
 int16_t ITL_BSP_SetLED(uint8_t);
 int16_t ITL_BSP_STM32_RST(uint8_t);
@@ -68,8 +69,12 @@ int16_t ITL_BSP_ENET_RST(uint8_t);
 int16_t ITL_BSP_WriteNDEF(char *);
 int16_t ITL_BSP_ReadNDEF(char *);
 int16_t ITL_BSP_EraseNDEF(void);
+int16_t ITL_BSP_NFCStatus(void);
 
 int16_t ITL_BSP_GetFram(void);
+
+int16_t ITL_BSP_APMGetConfig(uint8_t option, uint32_t *config);
+int16_t ITL_BSP_APMSetConfig(uint8_t option, uint32_t config);
 
 #if defined (__cplusplus)
 }
