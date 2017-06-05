@@ -35,6 +35,13 @@ enum
 	BACKLIGHT_LEVELMAX
 };
 
+
+enum
+{
+	PAYMETHOD_NONE = 0x0000,
+	PAYMETHOD_ALL = 0xffff
+};
+
 //=============================================================================
 // Function Definitions
 //=============================================================================
@@ -75,6 +82,12 @@ int16_t ITL_BSP_GetFram(void);
 
 int16_t ITL_BSP_APMGetConfig(uint8_t option, uint32_t *config);
 int16_t ITL_BSP_APMSetConfig(uint8_t option, uint32_t config);
+
+int16_t ITL_BSP_APMEnablePayin(uint32_t method);
+int16_t ITL_BSP_APMDisablePayin(uint32_t method);
+int16_t ITL_BSP_APMEnablePayout(uint32_t method);
+int16_t ITL_BSP_APMDisablePayout(uint32_t method);
+
 
 #if defined (__cplusplus)
 }
