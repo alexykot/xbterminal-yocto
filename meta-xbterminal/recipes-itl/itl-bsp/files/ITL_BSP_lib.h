@@ -42,6 +42,8 @@ enum
 	PAYMETHOD_ALL = 0xffff
 };
 
+#define XBT_UID_LEN	36
+
 //=============================================================================
 // Function Definitions
 //=============================================================================
@@ -60,9 +62,9 @@ int16_t ITL_BSP_HopperccTalkInit(void);
 int16_t ITL_BSP_GetPayoutOptions(uint8_t *options);
 int16_t ITL_BSP_GetPayoutStatus(void);
 int16_t ITL_BSP_GetPayout(uint16_t *payout);
-int16_t ITL_BSP_ProcessingPayout(uint8_t *uid);
-int16_t ITL_BSP_PayoutComplete(uint8_t *uid, uint16_t amountPaid);
-int16_t ITL_BSP_Payout_GetUID (uint8_t *uid);
+int16_t ITL_BSP_ProcessingPayout(char *uid);
+int16_t ITL_BSP_PayoutComplete(char *uid, uint16_t amountPaid);
+int16_t ITL_BSP_Payout_GetUID (char *uid);
 int16_t ITL_BSP_AddCredit(uint32_t credit);
 int16_t ITL_BSP_PayoutCash( uint16_t amount );
 int16_t ITL_BSP_CashPayoutStatus(uint16_t *remainingCredit, int8_t *state);
@@ -91,6 +93,9 @@ int16_t ITL_BSP_APMDisablePayin(uint32_t method);
 int16_t ITL_BSP_APMEnablePayout(uint32_t method);
 int16_t ITL_BSP_APMDisablePayout(uint32_t method);
 
+int16_t ITL_BSP_APMError(uint32_t errorCode);
+
+int16_t ITL_BSP_FRAM_ReadData(uint16_t address, uint8_t *data, uint8_t datalen);
 
 #if defined (__cplusplus)
 }
