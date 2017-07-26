@@ -42,7 +42,7 @@ enum
 	PAYMETHOD_ALL = 0xffff
 };
 
-#define XBT_UID_LEN	36
+#define XBT_UID_LEN	6
 
 //=============================================================================
 // Function Definitions
