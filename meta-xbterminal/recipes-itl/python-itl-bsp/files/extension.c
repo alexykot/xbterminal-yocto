@@ -49,10 +49,39 @@ static PyObject *get_payout_status(PyObject *self) {
     return Py_BuildValue("i", status);
 }
 
-static PyObject *get_payout(PyObject *self) {
+static PyObject *get_payout_amount(PyObject *self) {
     uint16_t amount;
     ITL_BSP_GetPayout(&amount);
     return Py_BuildValue("i", amount);
+}
+
+static PyObject *withdrawal_started(PyObject *self, PyObject *args) {
+    char *uid;
+    if (!PyArg_ParseTuple(args, "s", &uid)) {
+        PyErr_SetString(PyExc_ValueError, "Invalid argument");
+        return NULL;
+    }
+    int16_t result;
+    result = ITL_BSP_ProcessingPayout(uid);
+    return Py_BuildValue("i", result);
+}
+
+static PyObject *withdrawal_completed(PyObject *self, PyObject *args) {
+    char *uid;
+    uint16_t amount_paid;
+    if (!PyArg_ParseTuple(args, "si", &uid, &amount_paid)) {
+        PyErr_SetString(PyExc_ValueError, "Invalid arguments");
+        return NULL;
+    }
+    int16_t result;
+    result = ITL_BSP_PayoutComplete(uid, amount_paid);
+    return Py_BuildValue("i", result);
+}
+
+static PyObject *get_withdrawal_uid(PyObject *self) {
+    char uid[7];
+    ITL_BSP_Payout_GetUID(uid);
+    return Py_BuildValue("s", uid);
 }
 
 static PyObject *pay_cash(PyObject *self, PyObject *args) {
@@ -135,8 +164,16 @@ static PyMethodDef functions[] = {
      METH_VARARGS, "Add credit."},
     {"get_payout_status", (PyCFunction) get_payout_status,
      METH_NOARGS, "Get payout status."},
-    {"get_payout", (PyCFunction) get_payout,
-     METH_NOARGS, "Get payout."},
+    {"get_payout", (PyCFunction) get_payout_amount,  // Deprecated
+     METH_NOARGS, "Get payout amount."},
+    {"get_payout_amount", (PyCFunction) get_payout_amount,
+     METH_NOARGS, "Get payout amount."},
+    {"withdrawal_started", (PyCFunction) withdrawal_started,
+     METH_VARARGS, "Notify about started withdrawal."},
+    {"withdrawal_completed", (PyCFunction) withdrawal_completed,
+     METH_VARARGS, "Notify abount completed withdrawal."},
+    {"get_withdrawal_uid", (PyCFunction) get_withdrawal_uid,
+     METH_NOARGS, "Get UID of started withdrawal."},
     {"pay_cash", (PyCFunction) pay_cash,
      METH_VARARGS, "Pay cash."},
     {"get_apm_status", (PyCFunction) get_apm_status,
@@ -164,8 +201,13 @@ PyMODINIT_FUNC inititl_bsp(void) {
     PyModule_AddIntConstant(module, "OK", ITL_BSP_OK);
     PyModule_AddIntConstant(module, "FAIL", ITL_BSP_FAIL);
     PyModule_AddIntConstant(module, "PAYOUT_IDLE", ITL_BSP_PAYOUT_IDLE);
-    PyModule_AddIntConstant(module, "PAYOUT_PENDING", ITL_BSP_PAYOUT_PENDING);
-    PyModule_AddIntConstant(module, "PAYOUT_COMPLETE", ITL_BSP_PAYOUT_COMPLETE);
+    PyModule_AddIntConstant(module, "PAYOUT_PENDING", ITL_BSP_HOST_PAYOUT_PENDING);  // Deprecated
+    PyModule_AddIntConstant(module, "PAYOUT_COMPLETE", ITL_BSP_HOST_PAYOUT_COMPLETE);  // Deprecated
+    PyModule_AddIntConstant(module, "PAYOUT_INCOMPLETE", ITL_BSP_PAYOUT_INCOMPLETE);
+    PyModule_AddIntConstant(module, "PAYOUT_HOST_PENDING", ITL_BSP_HOST_PAYOUT_PENDING);
+    PyModule_AddIntConstant(module, "PAYOUT_HOST_COMPLETE", ITL_BSP_HOST_PAYOUT_COMPLETE);
+    PyModule_AddIntConstant(module, "PAYOUT_APM_PENDING", ITL_BSP_APM_PAYOUT_PENDING);
+    PyModule_AddIntConstant(module, "PAYOUT_APM_COMPLETE", ITL_BSP_APM_PAYOUT_COMPLETE);
     PyModule_AddIntConstant(module, "APM_IDLE", ITL_BSP_APM_IDLE);
     PyModule_AddIntConstant(module, "APM_ACTIVE", ITL_BSP_APM_ACTIVE);
     PyModule_AddIntConstant(module, "APM_OUTOFSERVICE", ITL_BSP_APM_OUTOFSERVICE);
