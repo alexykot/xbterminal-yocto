@@ -62,8 +62,8 @@ int16_t ITL_BSP_HopperccTalkInit(void);
 int16_t ITL_BSP_GetPayoutOptions(uint8_t *options);
 int16_t ITL_BSP_GetPayoutStatus(void);
 int16_t ITL_BSP_GetPayout(uint16_t *payout);
-int16_t ITL_BSP_ProcessingPayout(char *uid);
-int16_t ITL_BSP_PayoutComplete(char *uid, uint16_t amountPaid);
+int16_t ITL_BSP_ProcessingPayout(const char *uid);
+int16_t ITL_BSP_PayoutComplete(const char *uid, const uint16_t amountPaid);
 int16_t ITL_BSP_Payout_GetUID (char *uid);
 int16_t ITL_BSP_AddCredit(uint32_t credit);
 int16_t ITL_BSP_PayoutCash( uint16_t amount );
@@ -96,6 +96,8 @@ int16_t ITL_BSP_APMDisablePayout(uint32_t method);
 int16_t ITL_BSP_APMError(uint32_t errorCode);
 
 int16_t ITL_BSP_FRAM_ReadData(uint16_t address, uint8_t *data, uint8_t datalen);
+int16_t ITL_BSP_FRAM_WriteData(uint16_t address, uint8_t *data, uint8_t datalen);
+
 
 #if defined (__cplusplus)
 }
