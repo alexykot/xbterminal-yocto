@@ -57,8 +57,13 @@ static PyObject *get_payout_amount(PyObject *self) {
 
 static PyObject *withdrawal_started(PyObject *self, PyObject *args) {
     char *uid;
-    if (!PyArg_ParseTuple(args, "s", &uid)) {
+    int size;
+    if (!PyArg_ParseTuple(args, "s#", &uid, &size)) {
         PyErr_SetString(PyExc_ValueError, "Invalid argument");
+        return NULL;
+    }
+    if (size != 6) {
+        PyErr_SetString(PyExc_ValueError, "Invalid withdrawal UID");
         return NULL;
     }
     int16_t result;
@@ -68,9 +73,14 @@ static PyObject *withdrawal_started(PyObject *self, PyObject *args) {
 
 static PyObject *withdrawal_completed(PyObject *self, PyObject *args) {
     char *uid;
-    uint16_t amount_paid;
-    if (!PyArg_ParseTuple(args, "si", &uid, &amount_paid)) {
+    int size;
+    int amount_paid;
+    if (!PyArg_ParseTuple(args, "s#i", &uid, &size, &amount_paid)) {
         PyErr_SetString(PyExc_ValueError, "Invalid arguments");
+        return NULL;
+    }
+    if (size != 6) {
+        PyErr_SetString(PyExc_ValueError, "Invalid withdrawal UID");
         return NULL;
     }
     int16_t result;
