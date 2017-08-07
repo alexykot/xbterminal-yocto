@@ -51,4 +51,4 @@ def image(machine='imx6ulevk-itl',
 
 @task
 def clean():
-    local("find . -name '*.pyc' -delete")
+    local("find build/ -type f -name '*.sdcard.gz' -delete")
